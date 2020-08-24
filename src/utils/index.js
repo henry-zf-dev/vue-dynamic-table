@@ -1,7 +1,6 @@
 import {clearStorage, getStorage, setStorage, StorageKey} from '../config/sessions';
 import {commonConfig, devCtrTimerConfig} from '../config/common';
 import {commonString, msgCode, msgContent} from '../config/string';
-import {apolloClient} from '../plugin/graphql';
 import {baseUrl} from '../config/env';
 import axios from 'axios';
 import API from '../api/index';
@@ -351,32 +350,6 @@ export function judgeEqualByJson(obj1, obj2) {
   return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
 
-// 下载附件(通过后台返回的文件url的方式)
-export function downloadFileFromUrl(file = {}) {
-  if (!file.url) return;
-  axios({
-    url: `${baseUrl}${file.url}`,
-    method: 'get',
-    responseType: 'blob' // 一定要加上 responseType 值为blob
-  }).then(data => {
-    if (!data) {
-      return;
-    }
-    const url = window.URL.createObjectURL(data.data);
-    const link = document.createElement('a');
-    link.style.display = 'none';
-    link.href = url;
-    const name = file.url.substring(file.url.lastIndexOf('/') + 1, file.url.lastIndexOf('.'));// 截取url中的文件名称
-    link.setAttribute('download', name);// download 属性定义了文件名称，并且是必填，不然会页面会自动识别为跳转路径，而不是文件下载地址
-    document.body.appendChild(link);
-    link.click();
-    // 销毁添加的a标签
-    setTimeout(() => {
-      link.parentNode.removeChild(link);
-    }, 200);
-  });
-}
-
 // 下载附件(通过调用接口的方式)
 export function downloadFileApi(url, data = {}, method = 'get') {
   if (!url) return;
@@ -430,16 +403,6 @@ export function judgePermission(key = '') {
   return ~__.pluck(permissions, 'tag').indexOf(key);
 }
 
-// table 第一列 hover 样式
-export function getCellHoverClass({row, column, rowIndex, columnIndex}, max = 0) {
-  if (columnIndex === 0) {
-    return 'first-column';
-  }
-  if (columnIndex === max - 1) {
-    return 'last-column';
-  }
-}
-
 // 对象数组根据 key 排序
 export function objArrayComparison(key, revert = false) {
   return (obj1 = {}, obj2 = {}) => {
@@ -453,11 +416,6 @@ export function objArrayComparison(key, revert = false) {
       return 0;
     }
   };
-}
-
-// 补零加一 00~99
-export function generateNo(no = 0) {
-  return `${no < 9 ? '0' : ''}${no + 1}`;
 }
 
 // 精确到小数点后 n 位
