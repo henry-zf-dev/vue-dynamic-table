@@ -1,0 +1,827 @@
+@import "variables.less";
+
+/* ======== 自定义组件相关 ======== */
+
+/* '|' 分隔符 样式*/
+.separator-span {
+  height: 15px;
+  width: 1px;
+  background-color: @colorGray90;
+  display: inline-block;
+  bottom: -2px;
+  position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/*collapse icon 样式*/
+.collapse-icon-active {
+  transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transition: all 0.3s;
+}
+
+.collapse-icon-inactive {
+  transition: all 0.3s;
+}
+
+
+/*树形侧边导航栏组件*/
+.aside-menu-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  min-width: 250px;
+  overflow: auto;
+  overflow: overlay;
+  border-top-left-radius: @borderRadiusSecond;
+  border-bottom-left-radius: @borderRadiusSecond;
+  box-shadow: @boxShadowMain;
+  padding-bottom: 60px;
+  background: white;
+}
+
+.aside-menu-footer {
+  position: absolute;
+  height: 48px;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid @colorGray96;
+  background: @colorWhite;
+
+  .aside-menu-footer-btn {
+    border: none;
+    height: 48px;
+    width: 100%;
+    color: @colorGray40;
+    font-size: @sizeMain !important;
+  }
+
+  .aside-menu-footer-btn:hover {
+    color: @colorPrimary !important;
+  }
+
+  .aside-menu-footer-divider {
+    position: absolute;
+    right: 50%;
+    top: 15px;
+    height: 16px;
+    width: 1px;
+    background: @colorGray96;
+  }
+}
+
+.page-content-with-menu {
+  -webkit-transition: margin-left 0.1s;
+  -moz-transition: margin-left 0.1s;
+  -o-transition: margin-left 0.1s;
+  transition: margin-left 0.1s;
+}
+
+.aside-menu-comp {
+  //min-height: 100%;
+  background: @colorWhite;
+  padding-left: 8px;
+  padding-right: 8px;
+  position: relative;
+
+  .area-tree-header {
+    height: 80px;
+    line-height: 80px;
+    padding-right: 30px;
+    padding-left: 40px;
+    cursor: pointer;
+    position: relative;
+
+    .area-tree-header-label {
+      font-size: 24px;
+    }
+
+    .area-tree-header-more-icon {
+      position: absolute;
+      right: 15px;
+      top: 0;
+      bottom: 0;
+    }
+  }
+
+  .area-tree-header:hover {
+    background: @colorWhite;
+  }
+
+  .area-tree-header-container {
+    position: relative;
+    padding: @paddingMedium @paddingMedium @paddingMedium @paddingSecond;
+
+    .area-tree-header-btn {
+      position: absolute;
+      right: 0;
+      top: @paddingSecond;
+      font-size: @sizeMedium;
+      padding: @paddingSecond !important;
+      border: none !important;
+      margin-left: @paddingSecond !important;
+    }
+
+    .area-tree-header-btn:hover {
+      background: @colorBlackAlpha05 !important;
+      color: @colorPrimary !important;
+    }
+
+    .area-tree-header-divider {
+      position: absolute;
+      bottom: 0;
+      left: @paddingSecond;
+      right: -@paddingSecond;
+      height: 1px;
+      background: @colorGray96;
+    }
+
+    .el-input__inner {
+      border: none !important;
+      padding-left: 0 !important;
+    }
+  }
+
+  .aside-menu-content {
+    .aside-menu-tree-node {
+      position: relative;
+      font-size: @sizeMain !important;
+      color: @colorGray70;
+      width: 100%;
+      padding-right: 45px;
+      line-height: 42px;
+
+      .aside-menu-tree-node-label {
+        font-size: @sizeMain !important;
+        color: @colorGray10;
+      }
+
+      .aside-menu-tree-more-icon {
+        position: absolute;
+        right: 8px;
+        top: 7px;
+        bottom: 0;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        border-radius: @borderRadiusMain;
+
+        i {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          font-size: @sizeMain !important;
+        }
+      }
+    }
+
+    .el-tree-node__content {
+      height: 42px;
+      border-radius: 4px;
+    }
+
+    .el-tree-node__content > .el-tree-node__expand-icon {
+      margin-left: 8px !important;
+      margin-right: 8px !important;
+      font-size: @sizeMain !important;
+      padding: 8px !important;
+    }
+
+    .el-tree-node__content:hover {
+      background-color: @colorBlackAlpha05 !important;
+
+      span:not(.is-leaf) {
+        color: @colorPrimary;
+      }
+
+      .aside-menu-tree-more-icon {
+        background: @colorBlackAlpha05;
+      }
+    }
+
+    .el-tree-node.is-current > .el-tree-node__content,
+    .el-tree-node:focus > .el-tree-node__content {
+      background-color: @colorBlackAlpha05 !important;
+      .el-tree-node__expand-icon,
+      .aside-menu-tree-node-label,
+      .aside-menu-tree-node-icon,
+      .aside-menu-tree-more-icon .el-dropdown {
+        color: @colorPrimary !important;
+      }
+
+      .el-tree-node__expand-icon.is-leaf {
+        color: transparent !important;
+        cursor: default !important;
+      }
+    }
+  }
+
+  .aside-menu-simple-tree {
+    .aside-menu-tree-node {
+      padding-left: 20px;
+
+      .aside-menu-tree-more-icon {
+        font-size: @sizeSecond;
+      }
+
+      .aside-menu-tree-node-badge {
+        position: absolute;
+        top: @paddingRegular;
+        right: @paddingMedium;
+        display: inline-block;
+        text-align: center;
+        background: @colorDanger;
+        border-radius: @borderRadiusLarge;
+        padding-left: 6px;
+        padding-right: 6px;
+        font-size: @sizeSmall;
+        color: @colorWhite !important;
+        line-height: 16px;
+      }
+    }
+
+    .el-tree-node__expand-icon {
+      display: none;
+    }
+  }
+
+  .transfer-item-label {
+    width: 60px;
+    display: inline-block;
+  }
+}
+
+.aside-menu-collapse-icon {
+  position: absolute;
+  top: 250px;
+  width: 24px;
+  height: 40px;
+  line-height: 40px;
+  background: @colorWhite;
+  text-align: center;
+  border-radius: 0 5px 5px 0;
+  box-shadow: 3px 3px 3px 0 @colorBlackAlpha1;
+  cursor: pointer;
+  z-index: 1999;
+  -webkit-transition: left 0.1s;
+  -moz-transition: left 0.1s;
+  -o-transition: left 0.1s;
+  transition: left 0.1s;
+
+  i {
+    color: @colorGray60;
+  }
+
+  .collapse-icon:hover {
+    background-color: @colorPrimary;
+    i {
+      color: @colorWhite;
+    }
+  }
+}
+
+.aside-menu-collapse-icon:hover {
+  background-color: @colorPrimary;
+  i {
+    color: @colorWhite;
+  }
+}
+
+/*面包屑 tab 栏样式*/
+.breadcrumb-tab-container {
+  .el-tabs {
+    .el-tabs__item {
+      font-size: @sizeMain !important;
+      color: @colorGray40;
+      font-weight: normal;
+      height: 60px;
+      line-height: 60px;
+    }
+
+    .el-tabs__item.is-active, .el-tabs__item:hover {
+      font-weight: bold;
+      color: @colorPrimary;
+    }
+
+    .el-tabs__nav-wrap::after {
+      display: none !important;
+    }
+  }
+}
+
+/*公共 table 组件*/
+.ez-table-component {
+  position: relative;
+  background: @colorWhite;
+
+  .table-content {
+    /*table 组件中文本的配置样式 标题*/
+    .table-main-title {
+      min-height: @sizeMain;
+      line-height: @sizeMain;
+      font-size: @sizeMain;
+      color: @colorGray10;
+    }
+
+    .table-sub-title {
+      min-height: @sizeSecond;
+      line-height: @sizeSecond;
+      font-size: @sizeSecond;
+      color: @colorGray70;
+    }
+
+    .table-opt-btn {
+      color: @colorPrimary;
+      font-size: @sizeMain;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0 !important;
+      margin-right: 15px;
+    }
+
+    .table-column-dropdown {
+      cursor: pointer;
+      border-radius: 4px;
+      padding: 3px 8px 4px 8px;
+    }
+
+    .table-column-dropdown:hover {
+      color: @colorPrimary;
+      background: @colorBlackAlpha05;
+    }
+
+    .table-fixed-column {
+      .el-table__fixed, .el-table__fixed-right {
+        height: unset !important;
+        bottom: 9px;
+      }
+    }
+
+    .table-content-empty {
+      .empty-content-container {
+        min-height: 400px;
+        padding-top: 100px;
+      }
+    }
+  }
+
+  .table-pagination {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+
+    .el-pagination {
+      .el-pager li {
+        height: 30px;
+        border-radius: 50% !important;
+      }
+    }
+  }
+
+  /*表格空数据隐藏暂无数据*/
+  .el-table__empty-block {
+    display: none !important;
+  }
+
+}
+
+/*表格筛选组件*/
+.table-filter-container {
+  position: relative;
+
+  .table-filter-input-group {
+    padding-right: 165px;
+    .table-filter-prepend {
+      width: 100px;
+      font-size: @sizeMain;
+      font-weight: bold;
+      color: @colorGray70;
+      cursor: pointer;
+      background-color: @colorWhite;
+      border-top-left-radius: @borderRadiusMain;
+      border-bottom-left-radius: @borderRadiusMain;
+
+      .prepend-icon {
+        font-size: 20px !important;
+        margin-left: 25px;
+      }
+      .prepend-icon-active {
+        transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transition: all 0.5s;
+      }
+      .prepend-icon-inactive {
+        transition: all 0.5s;
+      }
+    }
+  }
+
+  .table-filter-content {
+
+    .filter-item-label {
+      font-size: @sizeMain;
+      font-weight: normal;
+    }
+
+    .table-filter-number {
+      .el-input-number {
+        width: 150px !important;
+      }
+    }
+
+    .table-filter-datetime {
+      .el-range-editor--small.el-input__inner {
+        width: 350px !important;
+        padding-right: 5px;
+      }
+    }
+  }
+
+  .table-filter-opt-container {
+    text-align: right;
+
+    div {
+      display: inline-block;
+    }
+
+    .table-filter-opt-btn {
+      text-align: center;
+      font-size: @sizeRegular;
+      padding: @paddingSecond !important;
+      border: none !important;
+      margin-left: @paddingSecond !important;
+    }
+
+    .table-filter-opt-btn:hover {
+      background: @colorBlackAlpha05 !important;
+      color: @colorPrimary !important;
+    }
+
+    .table-filter-opt-text-btn {
+      font-size: @sizeMain !important;
+      padding: 10px @paddingSecond !important;
+    }
+  }
+
+  .table-filter-popper {
+    position: absolute;
+    z-index: 2000;
+    background: @colorWhite;
+    border-radius: @borderRadiusMain;
+    border: solid 1px @colorGray90;
+    box-shadow: 0 2px 12px 0 @colorBlackAlpha1;
+  }
+
+  .table-search-suggest {
+    top: 35px;
+    left: 0;
+    right: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    .table-search-select {
+      .search-opt-label {
+        line-height: 40px;
+        font-size: @sizeSecond;
+        color: @colorGray40;
+        padding-left: 15px;
+        cursor: pointer;
+        position: relative;
+      }
+      .search-opt-label:hover {
+        background: @colorGray98;
+        color: @colorPrimary;
+      }
+      .search-opt-icon {
+        color: @colorPrimary;
+        font-weight: bold;
+        position: absolute;
+        top: 12px;
+        right: 10px;
+      }
+    }
+  }
+
+  .table-column-control {
+    top: 35px;
+    right: 0;
+    padding: 20px 30px;
+    width: 500px;
+  }
+}
+
+/*级联选择器是弹框形式，所有不能放在 table-filter-container 下面定义*/
+.table-filter-cascade {
+
+  .el-cascader-panel {
+    border: none !important;
+
+    .el-cascader-menu {
+      border-right: none !important;
+      min-width: 250px;
+
+      .el-cascader-menu__wrap {
+        height: 100%;
+        min-height: 120px;
+        overflow: hidden;
+
+        .el-cascader-menu__list {
+          padding: 10px;
+
+          .el-cascader-node {
+            padding-left: 5px !important;
+
+            .el-cascader-node__prefix {
+              right: 10px !important;
+              left: auto;
+              font-size: @sizeSecond;
+              font-weight: bold;
+            }
+          }
+
+          .el-cascader-node.in-active-path {
+            background: @colorGray98;
+          }
+
+          .el-cascader-node:not(.is-disabled):hover,
+          .el-cascader-node:not(.is-disabled):focus,
+          .el-cascader-node:not(.is-disabled):active {
+            background: @colorGray98;
+            color: @colorPrimary;
+          }
+        }
+      }
+
+      .el-scrollbar__bar.is-vertical {
+        display: none;
+      }
+    }
+  }
+}
+
+/*表单 提交/取消 按钮样式*/
+.form-opt-btn-container {
+  .el-button {
+    padding-left: @paddingLarge !important;
+    padding-right: @paddingLarge !important;
+  }
+}
+
+.device-monitor-layout {
+  .device-monitor-unit {
+    padding: @paddingMedium 0 @paddingMain 0;
+  }
+  .device-monitor-title {
+    padding-bottom: @paddingMedium;
+    font-size: @sizeMain;
+    font-weight: bold;
+    color: @colorGray10;
+  }
+
+  .el-table {
+    .cell {
+      padding-left: @paddingMain !important;
+    }
+    th.is-leaf {
+      height: 50px;
+    }
+  }
+}
+
+/*思科控制页面*/
+.cisco-control-container {
+  .el-tabs {
+    .el-tabs__header {
+      margin: 0 0 10px !important;
+    }
+    .el-tabs__item {
+      font-size: @sizeMain !important;
+      color: @colorGray40;
+      font-weight: normal;
+      height: 48px;
+      line-height: 48px;
+    }
+
+    .el-tabs__item.is-active, .el-tabs__item:hover {
+      font-weight: bold;
+      color: @colorPrimary;
+    }
+
+    .el-tabs__nav-wrap::after {
+      height: 1px !important;
+      background: @colorBlackAlpha1;
+    }
+  }
+  .el-input__inner {
+    font-size: @sizeMain;
+  }
+  .cisco-dialer-monitor {
+    .el-table {
+      td, th {
+        text-align: center;
+      }
+      td .cell {
+        color: @colorGray40 !important;
+      }
+    }
+  }
+}
+
+.device-monitor-dialog.el-dialog {
+  max-width: 1000px;
+
+  .el-dialog__header {
+    display: none;
+  }
+
+  .el-dialog__body {
+    padding: 0 !important;
+  }
+}
+.device-monitor-dialog.limit-width.el-dialog {
+  min-width: 750px;
+}
+
+/*设备动态状态样式*/
+.device-dynamic-status {
+}
+
+/*table中的图片样式*/
+.table-cell-image-container {
+  white-space: nowrap;
+  overflow: auto;
+}
+
+/*滚动条样式*/
+.table-cell-image-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-cell-image-container::-webkit-scrollbar-thumb {
+  border-radius: @borderRadiusMain;
+  -webkit-box-shadow: inset 0 0 5px @colorGray70;
+  background: @colorGray70;
+}
+
+.table-cell-image-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px @colorGray98;
+  border-radius: 0;
+  background: @colorGray98;
+}
+
+.table-cell-image {
+  width: 120px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: @borderRadiusSecond;
+}
+
+.self-check-record-page {
+
+  .circle {
+    background-image: url("../img/jkd-bg@1x.png");
+    width: 52px !important;
+    height: 46px !important;
+    display: inline-block;
+    line-height: 44px !important;
+    padding-right: 2px;
+  }
+
+  .fine {
+    background-position: -0px -0px;
+  }
+
+  .terrible-circle {
+    background-position: -0px -0px;
+  }
+
+  .poor-circle {
+    background-position: -48px -0px;
+  }
+
+  .general-circle {
+    background-position: -96px -0px;
+  }
+
+  .good-circle {
+    background-position: -142px -0px;
+  }
+
+  .fine-circle {
+    background-position: -190px -0px;
+  }
+
+  .normal-circle {
+    background: linear-gradient(180deg, rgb(248, 182, 75) 0%, rgb(253, 243, 147) 100%) !important;
+  }
+}
+
+/*拨号盘*/
+.dialer-panel-container {
+  .dialer-input-container {
+    position: relative;
+    padding: 0 5px;
+
+    .el-input__inner {
+      font-size: @sizeMain;
+    }
+
+    .dialer-input {
+      max-width: 210px;
+    }
+
+    .dialer-clear-btn {
+      position: absolute;
+      right: 5px;
+      border-radius: 20px !important;
+    }
+  }
+
+  .dialer-num-btn {
+    width: 80px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 32px;
+    font-weight: bold;
+    color: @colorGray10;
+    background-color: @colorWhite;
+    border-radius: 40px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .dialer-num-btn:hover {
+    background: @colorPrimary;
+    border: none;
+    color: @colorWhite;
+  }
+
+}
+
+/*设备链路组件*/
+.device-node-container {
+  background: @colorWhite;
+  border-radius: @borderRadiusLarge;
+  border: 1px solid @colorGray90;
+  position: relative;
+  cursor: pointer;
+
+  .device-type-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 56px;
+    width: 56px;
+  }
+
+  .device-node-info-container {
+    height: 54px;
+    text-align: left;
+
+    .device-name {
+      position: absolute;
+      top: 10px;
+      left: 60px;
+      right: 35px;
+      font-size: @sizeSecond;
+      font-weight: bold;
+      color: @colorGray10;
+    }
+
+    .device-detail {
+      position: absolute;
+      bottom: 10px;
+      left: 60px;
+      right: 0;
+      font-size: @sizeSecond;
+      color: @colorGray60;
+    }
+
+    .device-online-icon {
+      position: absolute;
+      right: 23px;
+      top: 10px;
+      font-size: @sizeSecond;
+    }
+
+    .device-alarm-img {
+      position: absolute;
+      top: 10px;
+      right: 5px;
+      height: 12px;
+      width: 12px;
+    }
+  }
+}

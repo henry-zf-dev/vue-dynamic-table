@@ -1,0 +1,36 @@
+@import "variables.less";
+
+/* ======== 按钮相关 ======== */
+
+.el-button--primary {
+  background: @colorPrimary;
+  border: @colorPrimary !important;
+  color: @colorWhite !important;
+}
+
+.el-button--default {
+  background: @colorWhite;
+  border-radius: @borderRadiusMain !important;
+  color: @colorGray40;
+}
+
+.el-button--default:hover {
+  background: @colorPrimary !important;
+  color: @colorWhite !important;
+}
+
+.el-button--info {
+  background: @colorWhite !important;
+  color: @colorGray20 !important;
+  border-color: @colorGray90 !important;
+  border-radius: @borderRadiusMain !important;
+}
+
+.el-button--info:hover {
+  color: @colorPrimary !important;
+  border-color: @colorPrimary !important;
+}
+
+.el-button.is-circle {
+  border-radius: 50% !important;
+}

@@ -1,0 +1,202 @@
+/* force style */
+@import "variables.less";
+@import "common.less";
+@import "color.less";
+@import "font.less";
+@import "button.less";
+@import "element.less";
+@import "component.less";
+@import "./iconfont.less";
+
+/*登录页面 el-input 样式*/
+.login-page {
+
+  .el-input {
+    width: 360px;
+    height: 40px;
+    font-size: @sizeSecond;
+
+    .el-input__inner {
+      border: none !important;
+      border-radius: 2px !important;
+      background-color: @colorGray96 !important;
+    }
+  }
+
+}
+
+/*视频矩阵 table 相关样式*/
+.video-matrix-table {
+  -moz-user-select: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  position: relative;
+
+  .el-table {
+    border-radius: @borderRadiusSecond;
+
+    border: 1px solid @colorGray96 !important;
+
+    .el-table__header-wrapper {
+      border-radius: 0 !important;
+    }
+
+    .el-table__empty-block {
+      padding: 150px 0;
+    }
+
+    td {
+      cursor: pointer;
+    }
+
+    thead.is-group {
+      th {
+        background: none;
+      }
+
+      tr:first-of-type th:first-of-type {
+        border-bottom: none;
+      }
+
+      tr:first-of-type th:first-of-type:before {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 66px !important; /*这里需要自己调整，根据td的宽度和高度*/
+        top: 0;
+        left: 0;
+        background-color: red;
+        opacity: 1;
+        display: block;
+        transform: rotate(-68deg); /*这里需要自己调整，根据线的位置*/
+        transform-origin: top;
+      }
+
+      tr:last-of-type th:first-of-type:before {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 66px !important; /*这里需要自己调整，根据td的宽度和高度*/
+        bottom: 0;
+        right: 0;
+        background-color: red;
+        opacity: 1;
+        display: block;
+        transform: rotate(-68.5deg); /*这里需要自己调整，根据线的位置*/
+        transform-origin: bottom;
+      }
+    }
+
+    .cell, th div {
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+      text-align: center !important;
+      color: @colorGray10;
+      font-weight: normal !important;
+    }
+  }
+
+  .empty-content-container {
+    top: 20px !important;
+  }
+
+}
+
+/*自检规则模板弹框*/
+.rule-template-apply-dialog {
+  .el-dialog {
+    .el-dialog__body {
+      padding: 0 !important;
+    }
+
+    .el-dialog__header {
+      padding: @paddingMain !important;
+    }
+  }
+}
+
+/*联检规则新增/编辑页面*/
+.joint-check-rule-page {
+  .joint-check-rule-table {
+    .el-input {
+      width: 100% !important;
+    }
+  }
+}
+
+/*区域管理和告警规则新增编辑表单输入框和按钮样式*/
+.page-operation-form {
+  .el-input, .el-textarea, .el-select,
+  .el-cascader, .el-input-number,
+  .el-upload, .el-upload__tip, .el-upload-list {
+    width: 40% !important;
+    min-width: 300px;
+    max-width: 450px;
+  }
+  .el-select, .el-cascader, .el-input-number {
+    .el-input {
+      width: 100% !important;
+    }
+  }
+
+  /*新增房间界面文件列表和tip宽度*/
+  //.el-upload-list--text, .el-upload__tip {
+  //  width: 65% !important;
+  //}
+  //
+  //.el-tag--dark.el-tag--info .el-tag__close {
+  //  color: @colorGray40 !important;
+  //}
+  //
+  //.el-tag--dark.el-tag--info .el-tag__close:hover {
+  //  color: @colorPrimary !important;
+  //}
+  //
+  //.time-type-select {
+  //  .el-input {
+  //    width: 105px !important;
+  //  }
+  //
+  //  .el-date-editor--timerange {
+  //    width: 240px !important;
+  //  }
+  //}
+  //
+  //.alarm-select-width {
+  //  .el-input {
+  //    width: 130px !important;
+  //  }
+  //
+  //  .el-input-number {
+  //    width: 130px !important;
+  //
+  //    .el-input {
+  //      width: 130px !important;
+  //    }
+  //  }
+  //}
+}
+
+/*房间导入结果抽屉样式*/
+.import-room-result-container {
+  overflow: hidden;
+
+  .el-drawer__header {
+    font-size: @sizeMedium;
+    font-weight: bold;
+    color: @colorGray10;
+  }
+
+  .el-drawer {
+    margin-top: 60px !important;
+  }
+
+  .room-error-table-cell {
+    border-radius: 0 !important;
+
+    .cell {
+      padding-left: 0 !important;
+    }
+  }
+}

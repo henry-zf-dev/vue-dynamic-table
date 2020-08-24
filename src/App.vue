@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {};
+  },
+  beforeDestroy() {
+
+  },
+  mounted() {
+    this.$store.commit('updateClientWidth', document.body.clientWidth);
+    this.$store.commit('updateClientHeight', document.body.clientHeight);
+    // 监听窗口大小
+    window.onresize = () => {
+      return (() => {
+        this.$store.commit('updateClientWidth', document.body.clientWidth);
+        this.$store.commit('updateClientHeight', document.body.clientHeight);
+      })();
+    };
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="less">
+  #app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: @colorGray20;
+    background: @colorGray96;
+    box-shadow: -1px 0 0 @colorGray90;
+    height: 100%;
+  }
 </style>

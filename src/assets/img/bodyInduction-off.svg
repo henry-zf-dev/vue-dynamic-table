@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/设备图/人体感应/off</title>
+    <defs>
+        <linearGradient x1="50%" y1="13.0331503%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F0F0F0" offset="0%"></stop>
+            <stop stop-color="#D1D1D1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="13.0331503%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#D1D1D1" offset="0%"></stop>
+            <stop stop-color="#F0F0F0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#979797" offset="0%"></stop>
+            <stop stop-color="#C8C8C8" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="50%" id="radialGradient-4">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#DCDCDC" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="50%" id="radialGradient-5">
+            <stop stop-color="#666666" offset="0%"></stop>
+            <stop stop-color="#262626" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="icon/设备图/人体感应/off" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="编组-2">
+            <path d="M30,60 C46.5685425,60 60,46.5685425 60,30 C60,13.4314575 46.5685425,0 30,0 C13.4314575,0 0,13.4314575 0,30 C0,46.5685425 13.4314575,60 30,60 Z" id="椭圆形"></path>
+            <g id="编组" transform="translate(10.000000, 10.000000)">
+                <circle id="椭圆形" stroke="#999999" fill="url(#linearGradient-1)" fill-rule="nonzero" cx="19.8621646" cy="19.8621646" r="19.3621646"></circle>
+                <path d="M4.80774374,27.3978129 C5.236778,27.1977509 5.800822,27.4993033 6.06757128,28.071349 C6.33432056,28.6433946 6.2027626,29.2693115 5.77372834,29.4693735 C5.34469408,29.6694355 4.78065007,29.3678831 4.51390079,28.7958374 C4.24715151,28.2237917 4.37870948,27.5978748 4.80774374,27.3978129 Z M33.5265431,28.071349 C33.7932924,27.4993033 34.3573364,27.1977509 34.7863707,27.3978129 C35.215405,27.5978748 35.3469629,28.2237917 35.0802136,28.7958374 C34.8134644,29.3678831 34.2494204,29.6694355 33.8203861,29.4693735 C33.3913518,29.2693115 33.2597939,28.6433946 33.5265431,28.071349 Z M5.77372834,10.2549557 C6.2027626,10.4550177 6.33432056,11.0809346 6.06757128,11.6529803 C5.800822,12.2250259 5.236778,12.5265783 4.80774374,12.3265164 C4.37870948,12.1264544 4.24715151,11.5005375 4.51390079,10.9284918 C4.78065007,10.3564461 5.34469408,10.0548937 5.77372834,10.2549557 Z M35.0802136,10.9284918 C35.3469629,11.5005375 35.215405,12.1264544 34.7863707,12.3265164 C34.3573364,12.5265783 33.7932924,12.2250259 33.5265431,11.6529803 C33.2597939,11.0809346 33.3913518,10.4550177 33.8203861,10.2549557 C34.2494204,10.0548937 34.8134644,10.3564461 35.0802136,10.9284918 Z" id="形状结合" fill="#666666"></path>
+                <circle id="椭圆形备份" stroke="url(#linearGradient-3)" stroke-width="0.2" fill="url(#linearGradient-2)" fill-rule="nonzero" cx="19.8621646" cy="19.8621646" r="14.7350567"></circle>
+                <circle id="椭圆形备份-2" stroke="#979797" stroke-width="0.1" fill="url(#radialGradient-4)" cx="19.8621646" cy="19.8621646" r="5.95125532"></circle>
+                <circle id="椭圆形备份-3" fill="url(#radialGradient-5)" fill-rule="nonzero" cx="19.8621646" cy="19.8621646" r="4.79792423"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

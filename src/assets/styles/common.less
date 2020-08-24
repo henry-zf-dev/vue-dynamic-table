@@ -1,0 +1,556 @@
+@import "variables.less";
+
+/* ======== 公共样式 ======== */
+
+body {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 !important;
+  overflow-x: hidden !important;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+:focus {
+  outline: none !important;
+}
+
+/*margin*/
+.mar-no {
+  margin: 0 !important;
+}
+
+.mar-all-5 {
+  margin: 5px !important;
+}
+
+.mar-all-10 {
+  margin: 10px !important;
+}
+
+.mar-all {
+  margin: 15px !important;
+}
+
+.mar-lft-0 {
+  margin-left: 0 !important;
+}
+
+.mar-rgt-0 {
+  margin-right: 0 !important;
+}
+
+.mar-top-0 {
+  margin-top: 0 !important;
+}
+
+.mar-btm-0 {
+  margin-bottom: 0 !important;
+}
+
+.mar-lft-5 {
+  margin-left: 5px !important;
+}
+
+.mar-rgt-5 {
+  margin-right: 5px !important;
+}
+
+.mar-top-5 {
+  margin-top: 5px !important;
+}
+
+.mar-btm-5 {
+  margin-bottom: 5px !important;
+}
+
+.mar-rgt-10 {
+  margin-right: 10px !important;
+}
+
+.mar-lft-10 {
+  margin-left: 10px !important;
+}
+
+.mar-top-10 {
+  margin-top: 10px !important;
+}
+
+.mar-btm-10 {
+  margin-bottom: 10px !important;
+}
+
+.mar-top-20 {
+  margin-top: 20px !important;
+}
+
+.mar-btm-20 {
+  margin-bottom: 20px !important;
+}
+
+.mar-rgt-20 {
+  margin-right: 20px !important;
+}
+
+.mar-lft-20 {
+  margin-left: 20px !important;
+}
+
+.mar-top-30 {
+  margin-top: 30px !important;
+}
+
+.mar-btm-30 {
+  margin-bottom: 30px !important;
+}
+
+.mar-rgt-30 {
+  margin-right: 30px !important;
+}
+
+.mar-lft-30 {
+  margin-left: 30px !important;
+}
+
+.mar-top-40 {
+  margin-top: 40px !important;
+}
+
+.mar-btm-40 {
+  margin-bottom: 40px !important;
+}
+
+.mar-rgt-40 {
+  margin-right: 40px !important;
+}
+
+.mar-lft-40 {
+  margin-left: 40px !important;
+}
+
+.mar-rgt {
+  margin-right: 15px !important;
+}
+
+.mar-lft {
+  margin-left: 15px !important;
+}
+
+.mar-top {
+  margin-top: 15px !important;
+}
+
+.mar-btm {
+  margin-bottom: 15px !important;
+}
+
+/*padding*/
+.pad-all-5 {
+  padding: 5px !important;
+}
+
+.pad-all-10 {
+  padding: 10px !important;
+}
+
+.pad-all {
+  padding: 15px !important;
+}
+
+.pad-all-20 {
+  padding: 20px !important;
+}
+
+.pad-no {
+  padding: 0 !important;
+}
+
+.pad-top-none {
+  padding-top: 0 !important;
+}
+
+.pad-btm-none {
+  padding-bottom: 0 !important;
+}
+
+.pad-lft-0 {
+  padding-left: 0 !important;
+}
+
+.pad-rgt-0 {
+  padding-right: 0 !important;
+}
+
+.pad-top-0 {
+  padding-top: 0 !important;
+}
+
+.pad-btm-0 {
+  padding-bottom: 0 !important;
+}
+
+.pad-lft-5 {
+  padding-left: 5px !important;
+}
+
+.pad-rgt-5 {
+  padding-right: 5px !important;
+}
+
+.pad-top-5 {
+  padding-top: 5px !important;
+}
+
+.pad-btm-5 {
+  padding-bottom: 5px !important;
+}
+
+.pad-lft-10 {
+  padding-left: 10px !important;
+}
+
+.pad-rgt-10 {
+  padding-right: 10px !important;
+}
+
+.pad-top-10 {
+  padding-top: 10px !important;
+}
+
+.pad-btm-10 {
+  padding-bottom: 10px !important;
+}
+
+.pad-lft {
+  padding-left: 15px !important;
+}
+
+.pad-rgt {
+  padding-right: 15px !important;
+}
+
+.pad-top {
+  padding-top: 15px !important;
+}
+
+.pad-btm {
+  padding-bottom: 15px !important;
+}
+
+.pad-lft-20 {
+  padding-left: 20px !important;
+}
+
+.pad-rgt-20 {
+  padding-right: 20px !important;
+}
+
+.pad-top-20 {
+  padding-top: 20px !important;
+}
+
+.pad-btm-20 {
+  padding-bottom: 20px !important;
+}
+
+.pad-top-30 {
+  padding-top: 30px !important;
+}
+
+.pad-btm-30 {
+  padding-bottom: 30px !important;
+}
+
+.pad-rgt-30 {
+  padding-right: 30px !important;
+}
+
+.pad-lft-30 {
+  padding-left: 30px !important;
+}
+
+.pad-lft-60 {
+  padding-left: 60px !important;
+}
+
+.absolute-top-0 {
+  top: 0
+}
+
+.absolute-bottom-0 {
+  bottom: 0
+}
+
+.absolute-left-0 {
+  left: 0
+}
+
+.absolute-right-0 {
+  right: 0
+}
+
+/*禁止双击、长按手势，注意：该样式会导致输入框无法获取输入值*/
+.ban-long-touch {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/*常用样式*/
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default !important;
+}
+
+.over-flower-hidden {
+  overflow: hidden;
+}
+
+.text-underline {
+  text-decoration: underline !important;
+}
+
+.text-align-center {
+  text-align: center !important;
+}
+
+.text-align-left {
+  text-align: left !important;
+}
+
+.text-align-right {
+  text-align: right !important;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-flex {
+  display: inline-flex;
+}
+
+.display-inline {
+  display: inline;
+}
+
+.display-inline-block {
+  display: inline-block;
+}
+
+.display-none {
+  display: none;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.float-left {
+  float: left !important;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.clear {
+  clear: both;
+}
+
+.limited-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: normal;
+}
+
+.width-30 {
+  width: 30% !important;
+}
+
+.width-50 {
+  width: 50% !important;
+}
+
+.width-75 {
+  width: 75% !important;
+}
+
+.width-100 {
+  width: 100% !important;
+}
+
+.height-100 {
+  height: 100% !important;
+}
+
+.size-40 {
+  width: 40px;
+  height: 40px;
+}
+
+.size-100 {
+  width: 100px;
+  height: 100px;
+}
+
+.page-container {
+  padding: @paddingMain;
+
+  .el-tabs__item {
+    height: 42px;
+  }
+}
+
+.page-detail-container {
+  background-color: @colorWhite;
+  border-radius: @borderRadiusSecond;
+  box-shadow: @boxShadowMain;
+  padding-top: 2px;
+
+  .page-detail-title {
+    padding: @paddingMain;
+    border-bottom: 1px solid @colorGray96;
+  }
+
+  .el-tabs__header {
+    padding-left: @paddingMain;
+  }
+
+  .el-tabs__content {
+    position: unset !important;
+  }
+
+  .el-tabs__item {
+    height: 45px;
+  }
+
+  .tab-more-opt-container {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+  }
+
+  .page-detail-table {
+    background: @colorGray98 !important;
+    border-radius: @borderRadiusMain;
+
+    .el-table {
+      td, th {
+        padding-left: @paddingMain !important;
+        padding-right: @paddingMain !important;
+      }
+
+      .cell {
+        padding-left: 0 !important;
+      }
+    }
+  }
+}
+
+.table-container {
+  padding: @paddingMedium;
+  border-radius: @borderRadiusSecond;
+  background: @colorWhite;
+  box-shadow: @boxShadowMain;
+}
+
+/*编辑页*/
+.page-operation-container {
+  padding: 24px;
+  margin-bottom: 60px;
+  background: @colorWhite;
+  border-radius: @borderRadiusSecond;
+
+  .page-operation-divider {
+    height: 1px;
+    background: @colorBlackAlpha1;
+    margin: @paddingMain -@paddingMain @paddingMain 0;
+  }
+}
+
+.hr {
+  height: 1px;
+  width: 100%;
+  background-color: @colorGray90;
+}
+
+/*滚动条样式*/
+::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: @colorGray90;
+}
+
+::-webkit-scrollbar-track {
+  background: @colorGray96;
+}
+
+/*下划线样式 96度灰*/
+.border-bottom-96 {
+  border-bottom: 1px solid @colorGray96;
+}
+
+/*下划线样式 90度灰*/
+.border-bottom-90 {
+  border-bottom: 1px solid @colorGray90;
+}
+
+/*全局通知栏样式*/
+.global-notification {
+  line-height: 30px;
+  text-align: center;
+  background-color: @colorPrimary;
+  color: @colorWhite;
+  font-size: @sizeSecond;
+}
+
+// 下拉框分组样式
+.el-select-group__title {
+  color: @colorGray10 !important;
+  font-size: @sizeMain !important;
+}
+
+// 手机端样式
+@media (max-width: 767px) {
+  .page-container {
+    padding: 5px;
+
+    .area-row {
+      position: fixed;
+      z-index: 1999;
+      width: calc(100% - 79px) !important;
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
