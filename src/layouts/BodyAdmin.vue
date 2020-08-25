@@ -51,13 +51,28 @@
         @open="submenuOpen"
         @close="submenuClose">
         <div v-for="(router, idx) in menuData" :key="idx">
-          <el-menu-item
-            :key="idx"
-            :class="{'active-menu-item' : judgeIconActive(router), 'menu-item-collapse': menuCollapsed}">
-            <router-link :to="router.path">
-              <span class="mar-rgt">{{ router.meta.label }}</span>
-            </router-link>
-          </el-menu-item>
+          <el-submenu :index="`${router.name}`">
+            <template slot="title">
+              <i
+                :class="[router.meta.icon, {'active-submenu-icon' : judgeIconActive(router, true)}]"
+                class="iconfont"></i>
+              <span v-if="!menuCollapsed">
+                <span slot="title" class="mar-lft-10">{{ router.meta.label }}</span>
+                <i
+                  :class="[submenuOpenKey.includes(router.name) ? 'collapse-icon-inactive' : 'collapse-icon-active']"
+                  class="iconfont submenu-collapse-icon icon-zujiantubiao-xinxijiegou-xiangxia"
+                ></i>
+              </span>
+            </template>
+            <el-menu-item
+              v-for="(subRouter, idx) in router.children"
+              :key="idx"
+              :class="{'active-menu-item' : judgeIconActive(subRouter), 'menu-item-collapse': menuCollapsed}">
+              <router-link :to="subRouter.path">
+                <span class="mar-rgt">{{ subRouter.meta.label }}</span>
+              </router-link>
+            </el-menu-item>
+          </el-submenu>
         </div>
       </el-menu>
       <div v-if="!menuCollapsed" class="version_div color-bg-dark">
