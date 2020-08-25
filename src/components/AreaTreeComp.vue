@@ -316,7 +316,7 @@
             this.expandedKey.push(parseInt(p));
           });
           this.hasAreaInUrl = true;
-          this.lastAreaInUrl = parseInt(__.last(path));
+          this.lastAreaInUrl = parseInt(_.last(path));
         }
       },
 
@@ -387,7 +387,7 @@
           } else {
             if (level === 0) {
               // 如果当前没有默认展开项，则默认展开第一层级的节点
-              this.expandedKey = __.pluck(area, 'id');
+              this.expandedKey = _.pluck(area, 'id');
               this.currentNodeData = {id: 0};
               this.setCurrentNode(null);
             }

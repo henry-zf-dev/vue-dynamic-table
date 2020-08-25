@@ -509,7 +509,16 @@ export const tableIdConfig = {
   systemRoomTypeConfig: 'systemRoomTypeConfig', // 会议室类型配置
 
   selfCheckTemplateApply: 'selfCheckTemplateApply', // 自检模板应用至房间
-  selectRoom: 'selectRoom' // 选择房间
+  selectRoom: 'selectRoom', // 选择房间
+
+  domain: 'domain',
+  kingdom: 'kingdom',
+  phylum: 'phylum',
+  class: 'class',
+  order: 'order',
+  family: 'family',
+  genus: 'genus',
+  species: 'species'
 
 };
 

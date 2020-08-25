@@ -259,7 +259,7 @@ export default {
       const destOrder = order === 'descending' ? 'desc' : 'asc'; // 升序，倒序
       const { sort = [] } = getTableState(this.tableId);
       // 先移除已有 sort ，在将新的 sort 插入到首位，后台根据数据元素的顺序来决定排序优先级
-      const existIdx = __.pluck(sort, 'key').indexOf(prop);
+      const existIdx = _.pluck(sort, 'key').indexOf(prop);
       if (~existIdx) {
         sort.splice(existIdx, 1);
       }
@@ -277,7 +277,7 @@ export default {
       const data = this.$refs[this.tableId].selection;
       if (rows.length > 0) {
         rows.forEach(row => {
-          if (!__.pluck(data, 'id').includes(row.id)) {
+          if (!_.pluck(data, 'id').includes(row.id)) {
             this.$refs[this.tableId].toggleRowSelection(row, true);
           }
         });

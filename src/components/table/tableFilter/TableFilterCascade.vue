@@ -46,7 +46,7 @@ export default {
   watch: {
     value: {
       handler(val) {
-        const path = __.pluck(val, 'path') || [];
+        const path = _.pluck(val, 'path') || [];
         if (this.multiple) {
           this.vModel = path;
         } else {
@@ -96,7 +96,7 @@ export default {
           const opt = getOptByVal(v);
           opt && (fullPath.push(opt.label || commonString.unknown));
         });
-        const last = __.last(val);
+        const last = _.last(val);
         last && (destValue.push({
           value: last,
           path: val,

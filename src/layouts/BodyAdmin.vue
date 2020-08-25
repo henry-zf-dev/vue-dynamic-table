@@ -51,28 +51,13 @@
         @open="submenuOpen"
         @close="submenuClose">
         <div v-for="(router, idx) in menuData" :key="idx">
-          <el-submenu :index="`${router.name}`">
-            <template slot="title">
-              <i
-                :class="[router.meta.icon, {'active-submenu-icon' : judgeIconActive(router, true)}]"
-                class="iconfont"></i>
-              <span v-if="!menuCollapsed">
-                <span slot="title" class="mar-lft-10">{{ router.meta.label }}</span>
-                <i
-                  :class="[submenuOpenKey.includes(router.name) ? 'collapse-icon-inactive' : 'collapse-icon-active']"
-                  class="iconfont submenu-collapse-icon icon-zujiantubiao-xinxijiegou-xiangxia"
-                ></i>
-              </span>
-            </template>
-            <el-menu-item
-              v-for="(subRouter, idx) in router.children"
-              :key="idx"
-              :class="{'active-menu-item' : judgeIconActive(subRouter), 'menu-item-collapse': menuCollapsed}">
-              <router-link :to="subRouter.path">
-                <span class="mar-rgt">{{ subRouter.meta.label }}</span>
-              </router-link>
-            </el-menu-item>
-          </el-submenu>
+          <el-menu-item
+            :key="idx"
+            :class="{'active-menu-item' : judgeIconActive(router), 'menu-item-collapse': menuCollapsed}">
+            <router-link :to="router.path">
+              <span class="mar-rgt">{{ router.meta.label }}</span>
+            </router-link>
+          </el-menu-item>
         </div>
       </el-menu>
       <div v-if="!menuCollapsed" class="version_div color-bg-dark">
@@ -107,7 +92,7 @@
 <script>
   import {commonString, msgCode, msgContent} from '../config/string';
   import {clearStorage, getStorage, StorageKey} from '../config/sessions';
-  import {checkRespCorrect, getUserInfo, messageHandle} from '../utils';
+  import {assembleTreeFromArray, checkRespCorrect, getUserInfo, messageHandle} from '../utils';
   import store from '../store/index';
   import {routerMeta} from '../router/routerMeta';
   import FormOptBtn from '../components/FormOptBtn';
@@ -123,7 +108,7 @@
       return {
         commonString: commonString,
         userInfo: getUserInfo(),
-        menuLoading: true,
+        menuLoading: false,
         menuCollapsed: false,
         submenuOpenKey: [], // 记录所有展开了的子菜单
         menuData: [],
@@ -194,6 +179,7 @@
       }
     },
     created() {
+      this.initMenu();
       this.initModifyPwdForm();
       this.initTableState();
       this.initRouteParamState();
@@ -209,6 +195,19 @@
     },
     methods: {
       // ===== 页面逻辑处理相关 =====//
+      initMenu() {
+       const menuData = assembleTreeFromArray({
+          srcData: Object.values(routerMeta),
+          parentKey: 'relation',
+          childKey: 'name'
+        });
+        this.menuData = [];
+        _.flatten(_.pluck(menuData, 'children')).forEach(router => {
+          if (router.children && router.children.length > 0) {
+            this.menuData.push(router);
+          }
+        });
+      },
       menuWidth() {
         // eslint-disable-next-line no-unreachable
         if (document.body.clientWidth < 1360) {
@@ -222,7 +221,7 @@
       collapseChanged() {
         this.menuCollapsed = !this.menuCollapsed;
         // 强制把所有子菜单都打开
-        this.submenuOpenKey = __.pluck(this.menuData, 'name');
+        this.submenuOpenKey = _.pluck(this.menuData, 'name');
       },
       submenuOpen(key) {
         !this.submenuOpenKey.includes(key) && this.submenuOpenKey.push(key);
@@ -254,7 +253,7 @@
       // 在 routeParamState 中取参数，赋值给 URL
       setUrlParamFromState() {
         const state = this.routeParamState[this.$route.name] || {};
-        if (__.isEmpty(state)) {
+        if (_.isEmpty(state)) {
           clearUrlParam();
         } else {
           Object.keys(state).forEach(key => {

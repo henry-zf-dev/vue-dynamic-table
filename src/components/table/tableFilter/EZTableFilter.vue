@@ -229,7 +229,7 @@ export default {
   },
   computed: {
     searchPlaceholder() {
-      const searchLabels = __.pluck(this.searchConfig, 'label');
+      const searchLabels = _.pluck(this.searchConfig, 'label');
       return searchLabels.length > 0 ? `请输入：${searchLabels.join('、')}` : '暂无可用搜索项';
     },
     tagData() {
@@ -347,7 +347,7 @@ export default {
         }
       });
       const { filterResult: existResult = {} } = getTableState(this.tableId);
-      if (!force && !__.isEmpty(existResult) &&
+      if (!force && !_.isEmpty(existResult) &&
           Object.keys(existResult).length === Object.keys(filterResult).length) {
         this.filterResult = existResult;
       } else {
@@ -403,7 +403,7 @@ export default {
           break;
         case 'cascade':
           const src = this.filterResult[tag.key];
-          const valIdx = (__.pluck(src.value, 'value')).indexOf(tag.value);
+          const valIdx = (_.pluck(src.value, 'value')).indexOf(tag.value);
           !!~valIdx && (src.value.splice(valIdx, 1));
           break;
         case 'number':

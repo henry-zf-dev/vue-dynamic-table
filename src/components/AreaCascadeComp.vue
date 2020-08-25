@@ -76,7 +76,7 @@
         });
       },
       areaChange(val = []) {
-        this.$emit('change', __.last(val) || '');
+        this.$emit('change', _.last(val) || '');
       }
     }
   };

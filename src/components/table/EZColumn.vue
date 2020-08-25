@@ -205,7 +205,7 @@
       },
       getBtnTitle(btn = {}) {
         const destBtn = this.getBtnInfo(btn);
-        if (!__.isEmpty(destBtn)) {
+        if (!_.isEmpty(destBtn)) {
           const type = destBtn.type;
           if (type && tableOptBtnConfig[type]) {
             return tableOptBtnConfig[type].label;

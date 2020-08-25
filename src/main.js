@@ -3,41 +3,87 @@
 
 // 解决 js 低版本浏览器兼容问题相关引入
 import 'babel-polyfill';
-
 import Vue from 'vue';
 import App from './App';
-import router from './router/routes';
+import store from './store/index';
 import VueRouter from 'vue-router';
-import ElementUI from 'element-ui';
-import underscore from 'vue-underscore';
-import '!style-loader!css-loader!less-loader!./assets/styles/app.less';
-
-// element 自定义主题
-import '../theme/index.css';
-
 import jQuery from 'jquery';
+import ElementUI, {Notification} from 'element-ui';
+import underscore, {_} from 'vue-underscore';
 import moment from 'moment';
+import router from './router/routes';
 import API from './api';
+import '../theme/index.css';
+import './assets/styles/app.less';
+import {commonString} from "./config/string";
+import {getStorage, StorageKey} from "./config/sessions";
+import {routerMeta} from "./router/routerMeta";
+
+moment.locale('zh-cn');
 window.$ = jQuery;
 window._ = _;
-moment.locale('zh-cn');
 window.moment = moment;
 window.API = API;
 
-Vue.prototype.$EventBus = new Vue();
-// 定义全局点击函数
-Vue.prototype.globalClick = function(callback) {
-  document.getElementById('app').onclick = function() {
-    callback();
-  };
-};
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 Vue.use(underscore);
 
-// 引入vuex
-import store from './store/index';
+// 判断当前路由是否存在和有权限
+function judgeRouteStatus(route = {}) {
+  // 当前路径为 /
+  if (route.path !== '/') {
+    const allRouter = [];
+    // 去除一级菜单，只有包含 component 属性，才表示是真实的页面路由
+    Object.values(routerMeta).forEach(item => {
+      if (item.component) {
+        allRouter.push(item);
+      }
+    });
+    if (!_.pluck(allRouter, 'name').includes(route.name)) {
+      return {
+        validate: false,
+        notFound: true
+      };
+    }
+  }
+  return {
+    validate: true
+  };
+}
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title ? `${to.meta.title} | ${commonString.defaultTitle}` : commonString.defaultTitle;
+  if (getStorage(StorageKey.token)) {
+    const routeStatus = judgeRouteStatus(to);
+    if (routeStatus.validate) {
+      next();
+    } else {
+      if (routeStatus.notFound) {
+        next(routerMeta.notFound.path);
+      } else if (routeStatus.noPermission) {
+        next(routerMeta.noPermission.path);
+      }
+    }
+  } else {
+    if (!to.meta.ignoreToken && to.path !== routerMeta.login.path) {
+      if (to.path !== '/') {
+        Notification({
+          title: '提示',
+          message: '请先登录!',
+          type: 'warning',
+          duration: 1500
+        });
+        next({ path: routerMeta.login.path, query: { redirect: location.hostname } });
+      } else {
+        next({ path: routerMeta.login.path });
+      }
+    } else {
+      next();
+    }
+  }
+});
 
 /* eslint-disable no-new */
 new Vue({

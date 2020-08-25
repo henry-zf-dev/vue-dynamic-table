@@ -1,15 +1,21 @@
-import monitor from './monitor/index.js';
-import alarm from './alarm/index.js';
-import management from './management/index.js';
-import personnel from './personnel/index.js';
-import system from './system/index.js';
+import domain from './domain/index.js';
+import kingdom from './kingdom/index.js';
+import phylum from './phylum/index.js';
+import classes from './class/index.js';
+import order from './order/index.js';
+import family from './family/index.js';
+import genus from './genus/index.js';
+import species from './species/index.js';
 import other from './other/index.js';
 
 export const routerMeta = {
-  ...monitor,
-  ...alarm,
-  ...management,
-  ...personnel,
-  ...system,
+  ...domain,
+  ...kingdom,
+  ...phylum,
+  ...classes,
+  ...order,
+  ...family,
+  ...genus,
+  ...species,
   ...other
 };

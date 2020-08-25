@@ -143,7 +143,7 @@ export default {
       }
     },
     onRemove(file, fileList) {
-      const idx = __.pluck(this.fileList, 'id').indexOf(file.id);
+      const idx = _.pluck(this.fileList, 'id').indexOf(file.id);
       if (~idx) {
         this.fileList.splice(idx, 1);
       }
