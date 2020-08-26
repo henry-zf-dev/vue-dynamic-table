@@ -8,9 +8,7 @@
           @click="collapseChanged"></i>
         <img class="header-logo" src="../assets/img/logo-green.png">
         <div class="header-right-container">
-          <!--          <img class="user-thumbnail" src="../assets/img/one-authority.png"/>-->
-          <!--          todo 目前后台还没有传姓名过来，先用账号代替-->
-          <TableCircle :size="28" :title="userInfo.username" color="color-primary"></TableCircle>
+          <img class="user-thumbnail" src="../assets/img/one-authority.png">
           <el-dropdown trigger="hover" class="cursor-pointer pad-lft-10" @command="headerMoreOptCommand">
             <span class="el-dropdown-link font-size-main font-gray-90">
               {{ userInfo.username }}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -113,12 +111,9 @@
   import FormOptBtn from '../components/FormOptBtn';
   import {mapState} from 'vuex';
   import {clearUrlParam, getUrlParam, setUrlParam, updateRouteParamState} from '../modules/urlParamStoreHdl';
-  import TableCircle from '../components/table/TableCircle.vue';
 
   export default {
-    components: {
-      FormOptBtn, TableCircle
-    },
+    components: {FormOptBtn},
     data() {
       return {
         commonString: commonString,

@@ -27,8 +27,8 @@ export default {
     component: () => import('../../pages/NotFound.vue')
   },
   home: {
-    path: '/admin/home',
-    name: 'admin.home',
+    path: '/culture/home',
+    name: 'culture.home',
     meta: {
       title: '主页',
       module: 'home'

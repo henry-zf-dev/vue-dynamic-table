@@ -79,7 +79,7 @@
         }
         this.fullscreenLoading = false;
         setStorage(StorageKey.token, 'token');
-        this.$router.push({name: routerMeta.domain.name});
+        this.$router.push({name: routerMeta.dynastyProgress.name});
         return;
         // eslint-disable-next-line no-unreachable
         const req = {

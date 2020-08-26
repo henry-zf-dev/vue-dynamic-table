@@ -90,7 +90,7 @@ export function getUserInfo() {
   return {
     token: getStorage(StorageKey.token) || '',
     userId: getStorage(StorageKey.userId) || '',
-    username: getStorage(StorageKey.username) || '',
+    username: getStorage(StorageKey.username) || 'admin',
     userRole: getStorage(StorageKey.userRole, true) || {},
     userEmail: getStorage(StorageKey.userEmail) || '',
     isAdmin: getStorage(StorageKey.userRole).includes(commonConfig.userRole.admin)
