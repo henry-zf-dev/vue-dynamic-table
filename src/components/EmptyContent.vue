@@ -10,7 +10,7 @@
       <div v-if="optData.length > 0" class="mar-top-20">
         <div v-for="(opt, idx) in optData" :key="idx" class="display-inline-block">
           <el-button
-            v-if="opt.type === 'btn' && (!opt.perm || judgePerm(opt.perm))"
+            v-if="opt.type === 'btn'"
             :class="opt.icon"
             class="iconfont mar-lft-5 mar-rgt-5"
             size="medium"
@@ -19,7 +19,7 @@
             <span class="mar-lft-10">{{ opt.label }}</span>
           </el-button>
           <el-dropdown
-            v-if="opt.type === 'dropdown' && judgeDropDown(opt.items)"
+            v-if="opt.type === 'dropdown'"
             @command="opt.callback">
             <el-button
               :class="opt.icon"
@@ -31,7 +31,6 @@
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item
                 v-for="(item, idx) in opt.items"
-                v-if="!item.perm || judgePerm(item.perm)"
                 :key="idx"
                 :class="item.icon"
                 :command="item.command"
@@ -47,8 +46,6 @@
 </template>
 
 <script>
-
-  import {judgePermission} from '../utils';
 
   export default {
     name: 'EmptyContent',
@@ -74,14 +71,6 @@
     },
     data() {
       return {};
-    },
-    methods: {
-      judgePerm: judgePermission,
-      judgeDropDown(items = []) {
-        return items.find(i => {
-          return !i.perm || this.judgePerm(i.perm);
-        });
-      }
     }
   };
 </script>

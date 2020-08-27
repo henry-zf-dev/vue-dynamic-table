@@ -42,7 +42,7 @@
         <div v-else-if="child.buttons">
           <div
             v-for="(btn, idx) in child.buttons"
-            v-if="!btn.dropdown && (judgeOptBtnPerm(btn) || btn.icon) && (data.hasOwnProperty('isBtnArr')?!data['isBtnArr'].includes(btn.type):true)"
+            v-if="!btn.dropdown && btn.icon && (data.hasOwnProperty('isBtnArr')?!data['isBtnArr'].includes(btn.type):true)"
             :key="idx">
             <el-button
               :class="getBtnClass(btn)"
@@ -63,7 +63,7 @@
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item
                 v-for="opt in getDropdownOpts(child.buttons)"
-                v-if="judgeOptBtnPerm(opt) && (data.hasOwnProperty('isBtnArr')?!data['isBtnArr'].includes(opt.type):true)"
+                v-if="(data.hasOwnProperty('isBtnArr')?!data['isBtnArr'].includes(opt.type):true)"
                 :key="opt.label"
                 :class="opt.class"
                 :command="{type: opt.value, data: data}">
@@ -100,9 +100,7 @@
 
 <script>
   import {commonString} from '../../config/string';
-  import {statusColorConfig, tableOptBtnConfig} from '../../config/common';
-  import {permissionConfig} from '../../config/permission';
-  import {judgePermission} from '../../utils';
+  import {tableOptBtnConfig} from '../../config/common';
   import {baseUrl} from '../../config/env';
   import TableCircle from './TableCircle.vue';
 
@@ -170,16 +168,6 @@
         if (!images) return [];
         return Array.isArray(images) ? images : [images];
       },
-      judgeOptBtnPerm(btn = {}) {
-        const {perms = []} = btn;
-        let hasPerm = false;
-        perms.forEach(p => {
-          if (judgePermission(p)) {
-            hasPerm = true;
-          }
-        });
-        return hasPerm;
-      },
       getBtnClass(btn = {}) {
         const destBtn = this.getBtnInfo(btn);
         return destBtn.icon ? `iconfont font-size-main font-gray-90 cursor-default ${destBtn.class}` : `${destBtn.class}`;
@@ -220,7 +208,7 @@
         let show = false;
         for (let i = 0; i < buttons.length; i++) {
           const btn = buttons[i];
-          if (btn.dropdown && this.judgeOptBtnPerm(btn)) {
+          if (btn.dropdown) {
             show = true;
             break;
           }

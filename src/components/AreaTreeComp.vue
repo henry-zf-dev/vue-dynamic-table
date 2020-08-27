@@ -8,7 +8,6 @@
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item
               v-for="item in headerMoreOptMenu"
-              v-if="judgePerm(item.perm)"
               :class="item.class"
               :key="item.label"
               :command="item.value">
@@ -69,7 +68,6 @@
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item
                   v-for="item in moreOptMenu"
-                  v-if="judgePerm(item.perm)"
                   :class="item.class"
                   :key="item.label"
                   :command="item.value">
@@ -130,7 +128,7 @@
 
 <script>
   import {tenant} from '../config/env';
-  import {checkRespCorrect, deepCopyWithJson, judgePermission, messageHandle} from '../utils';
+  import {checkRespCorrect, deepCopyWithJson, messageHandle} from '../utils';
   import {commonConfig, tenantConfig} from '../config/common';
   import {permissionConfig} from '../config/permission';
   import {routerMeta} from '../router/routerMeta';
@@ -286,7 +284,6 @@
       });
     },
     methods: {
-      judgePerm: judgePermission,
       getUserData() {
         API.user.userAll().then(resp => {
           if (checkRespCorrect(resp)) {

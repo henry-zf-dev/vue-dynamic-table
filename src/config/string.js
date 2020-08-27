@@ -35,7 +35,7 @@ export const msgContent = {
 };
 
 export const commonString = {
-  defaultTitle: 'ezManager集控系统 | ezCloud',
+  defaultTitle: '中华传统文化',
   unknown: '未知',
   none: '无',
   // 设备基础信息

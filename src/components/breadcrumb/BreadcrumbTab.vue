@@ -7,7 +7,6 @@
       <el-tabs v-model="activeName" class="header6" @tab-click="tabClick">
         <el-tab-pane
           v-for="(tab, index) in tabData"
-          v-if="!tab.perm || judgePerm(tab.perm)"
           :key="index"
           :label="tab.label"
           :name="tab.name">
@@ -17,7 +16,7 @@
     <el-col :span="optSpan" class="text-align-right">
       <div v-for="(opt, idx) in optData" :key="idx" class="display-inline-block">
         <div
-          v-if="opt.type === 'btn' && (!opt.perm || judgePerm(opt.perm))"
+          v-if="opt.type === 'btn'"
           style="height: 60px"
           class="breadcrumb-opt-btn"
           @click="opt.callback">
@@ -39,7 +38,6 @@
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item
               v-for="(item, idx) in opt.items"
-              v-if="!item.perm || judgePerm(item.perm)"
               :command="item.command"
               :key="idx">
               <i :class="item.icon" class="iconfont font-size-second"></i>&nbsp;{{ item.label }}
@@ -52,7 +50,6 @@
 </template>
 
 <script>
-  import {judgePermission} from '../../utils';
   import {mapState} from 'vuex';
 
   const elementResizeDetectorMaker = require('element-resize-detector');
@@ -122,7 +119,6 @@
       this.calculateHeight();
     },
     methods: {
-      judgePerm: judgePermission,
       // 监听面包屑高度变化
       calculateHeight() {
         const breadcrumb = document.getElementById(this.breadcrumbId);

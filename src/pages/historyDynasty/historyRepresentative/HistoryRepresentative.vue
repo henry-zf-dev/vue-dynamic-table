@@ -1,5 +1,5 @@
 <template>
-  <div class="cuisine-culinary-page" style="padding-top: 60px">
+  <div class="history-representative-page" style="padding-top: 60px">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">
@@ -41,15 +41,15 @@
   import {routerMeta} from "../../../router/routerMeta";
 
   export default {
-    name: 'CuisineCulinary',
+    name: 'HistoryRepresentative',
     components: {
       Breadcrumb, EZTable, EmptyContent
     },
     data() {
       return {
-        pageTitle: '饮食厨艺',
+        pageTitle: '代表人物',
         tableLoading: true,
-        tableId: tableIdConfig.cuisineCulinary,
+        tableId: tableIdConfig.historyRepresentative,
         columns: [],
         filters: [],
         tableData: []
@@ -108,7 +108,7 @@
         const params = {
           pageNo, pageSize, filters, sort
         };
-        API.cuisineCulinary.cuisineCulinaryList(params).then(resp => {
+        API.historyRepresentative.historyRepresentativeList(params).then(resp => {
           this.tableLoading = false;
           if (checkRespCorrect(resp)) {
             const {items, pageInfo = {}} = resp.data || {};
@@ -132,7 +132,7 @@
           confirmButtonText: '确定',
           cancelButtonText: '取消'
         }).then(() => {
-          API.cuisineCulinary.cuisineCulinaryDelete({id: data.id}).then(resp => {
+          API.historyRepresentative.historyRepresentativeDelete({id: data.id}).then(resp => {
             if (checkRespCorrect(resp)) {
               messageHandle({code: msgCode.DEL_SAVE, msg: `${this.pageTitle}删除成功`});
               this.initTableConfig();

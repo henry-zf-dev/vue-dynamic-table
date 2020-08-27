@@ -1,6 +1,6 @@
 import dynastyProgress from './historyDynasty/dynastyProgress/index.js';
 import historyMilestone from './historyDynasty/historyMilestone/index.js';
-import representative from './historyDynasty/representative/index.js';
+import historyRepresentative from './historyDynasty/historyRepresentative/index.js';
 import mountainsRivers from './geographyArchitecture/mountainsRivers/index.js';
 import famousArchitecture from './geographyArchitecture/famousArchitecture/index.js';
 import regionalCulture from './geographyArchitecture/regionalCulture/index.js';
@@ -20,7 +20,7 @@ import ethnicMinority from './otherCulture/ethnicMinority/index.js';
 export default {
   dynastyProgress,
   historyMilestone,
-  representative,
+  historyRepresentative,
   mountainsRivers,
   famousArchitecture,
   regionalCulture,

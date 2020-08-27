@@ -54,7 +54,7 @@ function judgeRouteStatus(route = {}) {
 }
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title ? `${to.meta.title} | ${commonString.defaultTitle}` : commonString.defaultTitle;
+  document.title = to.meta.title || commonString.defaultTitle;
   if (getStorage(StorageKey.token)) {
     const routeStatus = judgeRouteStatus(to);
     if (routeStatus.validate) {

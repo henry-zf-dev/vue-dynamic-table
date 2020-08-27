@@ -8,7 +8,7 @@ export default {
     parent: 'culture.home',
     relation: 'culture.home',
     meta: {
-      title: '中华文化 | 其他文化',
+      title: '其他文化 | 中华文化',
       label: '其他文化',
       icon: 'icon-nav-gaojing'
     }
@@ -20,10 +20,15 @@ export default {
     parent: 'culture.home',
     relation: 'culture.otherCulture',
     meta: {
-      title: '其他文化 | 传统节日',
+      title: '传统节日 | 其他文化',
       label: '传统节日',
       icon: 'icon-nav-gaojing',
-      table: [tableIdConfig.class]
+      breadcrumb: [
+        {
+          title: '其他文化：传统节日'
+        }
+      ],
+      table: [tableIdConfig.traditionFestival]
     },
     component: () => import('../../pages/otherCulture/traditionFestival/TraditionFestival.vue')
   },
@@ -34,10 +39,15 @@ export default {
     parent: 'culture.home',
     relation: 'culture.otherCulture',
     meta: {
-      title: '其他文化 | 生肖文化',
+      title: '生肖文化 | 其他文化',
       label: '生肖文化',
       icon: 'icon-nav-gaojing',
-      table: [tableIdConfig.class]
+      breadcrumb: [
+        {
+          title: '其他文化：生肖文化'
+        }
+      ],
+      table: [tableIdConfig.zodiacCulture]
     },
     component: () => import('../../pages/otherCulture/zodiacCulture/ZodiacCulture.vue')
   },
@@ -48,10 +58,15 @@ export default {
     parent: 'culture.home',
     relation: 'culture.otherCulture',
     meta: {
-      title: '其他文化 | 饮食厨艺',
+      title: '饮食厨艺 | 其他文化',
       label: '饮食厨艺',
       icon: 'icon-nav-gaojing',
-      table: [tableIdConfig.class]
+      breadcrumb: [
+        {
+          title: '其他文化：饮食厨艺'
+        }
+      ],
+      table: [tableIdConfig.cuisineCulinary]
     },
     component: () => import('../../pages/otherCulture/cuisineCulinary/CuisineCulinary.vue')
   },
@@ -62,10 +77,15 @@ export default {
     parent: 'culture.home',
     relation: 'culture.otherCulture',
     meta: {
-      title: '其他文化 | 音乐戏剧',
+      title: '音乐戏剧 | 其他文化',
       label: '音乐戏剧',
       icon: 'icon-nav-gaojing',
-      table: [tableIdConfig.class]
+      breadcrumb: [
+        {
+          title: '其他文化：音乐戏剧'
+        }
+      ],
+      table: [tableIdConfig.musicDrama]
     },
     component: () => import('../../pages/otherCulture/musicDrama/MusicDrama.vue')
   },
@@ -76,10 +96,15 @@ export default {
     parent: 'culture.home',
     relation: 'culture.otherCulture',
     meta: {
-      title: '其他文化 | 中华武术',
+      title: '中华武术 | 其他文化',
       label: '中华武术',
       icon: 'icon-nav-gaojing',
-      table: [tableIdConfig.class]
+      breadcrumb: [
+        {
+          title: '其他文化：中华武术'
+        }
+      ],
+      table: [tableIdConfig.ChineseWushu]
     },
     component: () => import('../../pages/otherCulture/ChineseWushu/ChineseWushu.vue')
   },
@@ -90,10 +115,15 @@ export default {
     parent: 'culture.home',
     relation: 'culture.otherCulture',
     meta: {
-      title: '其他文化 | 民间工艺',
+      title: '民间工艺 | 其他文化',
       label: '民间工艺',
       icon: 'icon-nav-gaojing',
-      table: [tableIdConfig.class]
+      breadcrumb: [
+        {
+          title: '其他文化：民间工艺'
+        }
+      ],
+      table: [tableIdConfig.folkHandicraft]
     },
     component: () => import('../../pages/otherCulture/folkHandicraft/FolkHandicraft.vue')
   },
@@ -104,10 +134,15 @@ export default {
     parent: 'culture.home',
     relation: 'culture.otherCulture',
     meta: {
-      title: '其他文化 | 少数民族',
+      title: '少数民族 | 其他文化',
       label: '少数民族',
       icon: 'icon-nav-gaojing',
-      table: [tableIdConfig.class]
+      breadcrumb: [
+        {
+          title: '其他文化：少数民族'
+        }
+      ],
+      table: [tableIdConfig.ethnicMinority]
     },
     component: () => import('../../pages/otherCulture/ethnicMinority/EthnicMinority.vue')
   }

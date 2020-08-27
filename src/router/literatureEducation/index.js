@@ -8,7 +8,7 @@ export default {
     parent: 'culture.home',
     relation: 'culture.home',
     meta: {
-      title: '中华文化 | 文学教育',
+      title: '文学教育 | 中华文化',
       label: '文学教育',
       icon: 'icon-nav-gaojing'
     }
@@ -20,10 +20,15 @@ export default {
     parent: 'culture.home',
     relation: 'culture.literatureEducation',
     meta: {
-      title: '文学教育 | 文学著作',
+      title: '文学著作 | 文学教育',
       label: '文学著作',
       icon: 'icon-nav-gaojing',
-      table: [tableIdConfig.class]
+      breadcrumb: [
+        {
+          title: '文学教育：文学著作'
+        }
+      ],
+      table: [tableIdConfig.famousLiterature]
     },
     component: () => import('../../pages/literatureEducation/famousLiterature/FamousLiterature.vue')
   },
@@ -34,10 +39,15 @@ export default {
     parent: 'culture.home',
     relation: 'culture.literatureEducation',
     meta: {
-      title: '文学教育 | 神话寓言',
+      title: '神话寓言 | 文学教育',
       label: '神话寓言',
       icon: 'icon-nav-gaojing',
-      table: [tableIdConfig.class]
+      breadcrumb: [
+        {
+          title: '文学教育：神话寓言'
+        }
+      ],
+      table: [tableIdConfig.mythologyAllegory]
     },
     component: () => import('../../pages/literatureEducation/mythologyAllegory/MythologyAllegory.vue')
   },
@@ -48,10 +58,15 @@ export default {
     parent: 'culture.home',
     relation: 'culture.literatureEducation',
     meta: {
-      title: '文学教育 | 文字书法',
+      title: '文字书法 | 文学教育',
       label: '文字书法',
       icon: 'icon-nav-gaojing',
-      table: [tableIdConfig.class]
+      breadcrumb: [
+        {
+          title: '文学教育：文字书法'
+        }
+      ],
+      table: [tableIdConfig.characterCalligraphy]
     },
     component: () => import('../../pages/literatureEducation/characterCalligraphy/CharacterCalligraphy.vue')
   }

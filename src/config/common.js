@@ -462,63 +462,24 @@ export const statusColorConfig = {
 
 // tableId 配置
 export const tableIdConfig = {
-  // 监控 => 房间
-  monitorRoom: 'monitorRoom', // 房间列表
-  monitorRoomDevice: 'monitorRoomDevice', // 房间设备列表
-  monitorRoomAlarmRule: 'monitorRoomAlarmRule', // 房间告警规则
-  monitorGlobalAlarmRule: 'monitorGlobalAlarmRule', // 全局告警规则
-  monitorRoomSelfCheckRule: 'monitorRoomSelfCheckRule', // 房间自检规则
-  monitorRoomJointCheckRule: 'monitorRoomJointCheckRule', // 房间联检规则
-  // 监控 => 运维报告
-  monitorRoomReport: 'monitorRoomReport', // 房间报告
-  monitorRoomReportAlarmStatistic: 'monitorRoomReportAlarmStatistic', // 房间报告告警统计
-  monitorRoomReportSelfCheckStatistic: 'monitorRoomReportSelfCheckStatistic', // 房间报告自检统计
-  monitorRoomReportAlarmReport: 'monitorRoomReportAlarmReport', // 房间报告告警记录
-  monitorSelfCheckReport: 'monitorSelfCheckReport', // 自检报告
-  monitorJointCheckReport: 'monitorJointCheckReport', // 联检报告
-  // 监控 => 系统日志
-  monitorDeviceLog: 'monitorDeviceLog', // 设备日志
-  monitorOperationLog: 'monitorOperationLog', // 操作日志
-  monitorRoomLog: 'monitorRoomLog', // 房间日志
-  monitorSelfCheckLog: 'monitorSelfCheckLog', // 自检日志
-
-  // 告警
-  alarmDevice: 'alarmDevice', // 告警设备
-  alarmRecord: 'alarmRecord', // 告警记录
-
-  // 管理
-  managerArea: 'managerArea', // 管理区域
-  managerDevice: 'managerDevice', // 管理设备
-  managerSubControl: 'managerSubControl', // 管理分控
-
-  // 人员
-  user: 'user', // 用户
-  role: 'role', // 角色
-
-  // 系统 => 告警规则
-  globalAlarmRule: 'globalAlarmRule', // 全局告警规则
-  roomAlarmRule: 'roomAlarmRule', // 房间告警规则
-  // 系统 => 检测规则
-  globalSelfCheckRule: 'globalSelfCheckRule', // 全局自检规则
-  roomSelfCheckRule: 'roomSelfCheckRule', // 房间自检规则
-  roomSelfCheckRuleTemplate: 'roomSelfCheckRuleTemplate', // 房间自检规则模板
-  roomJointCheckRule: 'roomJointCheckRule', // 房间联检规则
-  roomJointCheckRuleTemplate: 'roomJointCheckRuleTemplate', // 房间联检规则模板
-  // 系统 => 基础设置
-  systemExtFieldConfig: 'systemExtFieldConfig', // 扩展字段配置
-  systemRoomTypeConfig: 'systemRoomTypeConfig', // 会议室类型配置
-
-  selfCheckTemplateApply: 'selfCheckTemplateApply', // 自检模板应用至房间
-  selectRoom: 'selectRoom', // 选择房间
-
-  domain: 'domain',
-  kingdom: 'kingdom',
-  phylum: 'phylum',
-  class: 'class',
-  order: 'order',
-  family: 'family',
-  genus: 'genus',
-  species: 'species'
+  dynastyProgress: 'dynastyProgress',
+  historyMilestone: 'historyMilestone',
+  historyRepresentative: 'historyRepresentative',
+  mountainsRivers: 'mountainsRivers',
+  famousArchitecture: 'famousArchitecture',
+  regionalCulture: 'regionalCulture',
+  famousLiterature: 'famousLiterature',
+  mythologyAllegory: 'mythologyAllegory',
+  characterCalligraphy: 'characterCalligraphy',
+  thoughtFactions: 'thoughtFactions',
+  greatThinker: 'greatThinker',
+  traditionFestival: 'dynastyProgress',
+  zodiacCulture: 'zodiacCulture',
+  cuisineCulinary: 'cuisineCulinary',
+  musicDrama: 'musicDrama',
+  ChineseWushu: 'ChineseWushu',
+  folkHandicraft: 'folkHandicraft',
+  ethnicMinority: 'ethnicMinority'
 
 };
 

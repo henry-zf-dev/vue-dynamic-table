@@ -47,7 +47,7 @@
     <el-col :span="optSpan" class="text-align-right">
       <div v-for="(opt, idx) in optData" :key="idx" class="display-inline-block">
         <div
-          v-if="opt.type === 'btn' && (!opt.perm || judgePerm(opt.perm))"
+          v-if="opt.type === 'btn'"
           :style="{height: optHeight}"
           class="breadcrumb-opt-btn"
           @click="opt.callback">
@@ -60,7 +60,7 @@
           </div>
         </div>
         <el-dropdown
-          v-if="opt.type === 'dropdown' && judgeDropDown(opt.items)"
+          v-if="opt.type === 'dropdown'"
           class="display-inline-block"
           @command="opt.callback">
           <div
@@ -77,7 +77,6 @@
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item
               v-for="(item, idx) in opt.items"
-              v-if="!item.perm || judgePerm(item.perm)"
               :key="idx"
               :command="item.command">
               <i :class="item.icon" class="iconfont font-size-second"></i>&nbsp;{{ item.label }}
@@ -90,7 +89,6 @@
 </template>
 
 <script>
-  import {judgePermission} from '../../utils';
   import {commonString} from '../../config/string';
   import {mapState} from 'vuex';
 
@@ -195,7 +193,6 @@
       this.calculateHeight();
     },
     methods: {
-      judgePerm: judgePermission,
       // 监听面包屑高度变化
       calculateHeight() {
         const breadcrumb = document.getElementById(this.breadcrumbId);
@@ -203,11 +200,6 @@
         const erd = elementResizeDetectorMaker();
         erd.listenTo(breadcrumb, (element) => {
           this.$emit('change', element.offsetHeight, element.offsetWidth);
-        });
-      },
-      judgeDropDown(items = []) {
-        return items.find(i => {
-          return !i.perm || this.judgePerm(i.perm);
         });
       },
       clickTitle() {

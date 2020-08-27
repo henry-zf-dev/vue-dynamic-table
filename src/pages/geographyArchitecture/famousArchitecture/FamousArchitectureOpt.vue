@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: "Representative"
+    name: "FamousArchitectureOpt"
   }
 </script>
 
