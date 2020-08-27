@@ -97,16 +97,6 @@ export function getUserInfo() {
   };
 }
 
-export function isJsonString(str) {
-  try {
-    if (typeof JSON.parse(str) === 'object') {
-      return true;
-    }
-  } catch (e) {
-  }
-  return false;
-}
-
 export function checkRespCorrect(resp) {
   return (resp && resp.code === 0);
 }
@@ -126,28 +116,6 @@ export function getTableMinHeight(tableId, padBtm = 40, minHeight = 600) {
   const clientHeight = store.state.clientHeight;
   const tableHeight = clientHeight - toTop - padBtm;
   return Math.max(tableHeight, minHeight);
-}
-
-// 计算树形结构深度
-export function calculateTreeDepth(data = []) {
-  let arr = data;
-  let depth = 0;
-  while (arr.length > 0) {
-    const temp = [];
-    for (let i = 0; i < arr.length; i++) {
-      temp.push(arr[i]);
-    }
-    arr = [];
-    for (let i = 0; i < temp.length; i++) {
-      for (let j = 0; j < temp[i].children.length; j++) {
-        arr.push(temp[i].children[j]);
-      }
-    }
-    if (arr.length >= 0) {
-      depth++;
-    }
-  }
-  return depth;
 }
 
 // 扁平结构转树形结构
@@ -186,67 +154,6 @@ function filterEmptyChildren(srcData = []) {
   });
 }
 
-// 递归组装区域树形结构数据源
-export function assembleTreeData(source, key = 'children') {
-  const dest = [];
-  for (let i = 0; i < source.length; i++) {
-    const area = {
-      value: source[i].id,
-      label: source[i].name,
-      count: source[i].roomCount,
-      id: source[i].id,
-      name: source[i].name
-    };
-    if (source[i][key] && source[i][key].length > 0) {
-      area['children'] = assembleTreeData(source[i][key]);
-    }
-    dest.push(area);
-  }
-  return dest;
-}
-
-// 多层级 object 扁平化
-export function objectFlatten(obj = {}, mapAllKey = false, includeKeys = []) {
-  const result = {};
-  const recurse = (src, prop) => {
-    const toString = Object.prototype.toString;
-    if (toString.call(src) === '[object Object]') {
-      let isEmpty = true;
-      for (const p in src) {
-        if (mapAllKey || includeKeys.includes(p)) {
-          isEmpty = false;
-          recurse(src[p], prop ? prop + '.' + p : p);
-        }
-      }
-      if (isEmpty && prop) {
-        result[prop] = {};
-      }
-    } else if (toString.call(src) === '[object Array]') {
-      const len = src.length;
-      if (len > 0) {
-        src.forEach(function(item, index) {
-          recurse(item, prop ? prop + '.' + index : index);
-        });
-      } else {
-        result[prop] = [];
-      }
-    } else {
-      result[prop] = src;
-    }
-  };
-  recurse(obj, '');
-  return result;
-}
-
-// 调用接口前参数 clean，将空字符串转换为null
-export function paramsClean(params) {
-  Object.keys(params).forEach(key => {
-    if (params[key] === '') {
-      params[key] = null;
-    }
-  });
-}
-
 // 调用接口前参数trim，除去参数前后空格
 export function paramsTrim(params) {
   Object.keys(params).forEach(key => {
@@ -255,42 +162,6 @@ export function paramsTrim(params) {
       params[key] = value.trim();
     }
   });
-}
-
-// 生成随机数
-export function generateUID(len = 64, radix = '') {
-  const chars = '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-  const uuid = [];
-  let i;
-  radix = radix || chars.length;
-
-  if (len) {
-    // Compact form
-    for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix];
-  } else {
-    // rfc4122, version 4 form
-    let r;
-
-    // rfc4122 requires these characters
-    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-    uuid[14] = '4';
-
-    // Fill in random data.  At i==19 set the high bits of clock sequence as
-    // per rfc4122, sec. 4.1.5
-    for (i = 0; i < 36; i++) {
-      if (!uuid[i]) {
-        r = 0 | Math.random() * 16;
-        uuid[i] = chars[(i === 19) ? (r & 0x3) | 0x8 : r];
-      }
-    }
-  }
-
-  return uuid.join('');
-}
-
-// 通过 JSON.stringify 转化 判断相等
-export function judgeEqualByJson(obj1, obj2) {
-  return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
 
 // 利用 JSON 深度拷贝
@@ -305,30 +176,6 @@ export function judgeStrEqual(str1 = '', str2 = '') {
 
 export function forceToString(src = '') {
   return src + '';
-}
-
-// 对象数组根据 key 排序
-export function objArrayComparison(key, revert = false) {
-  return (obj1 = {}, obj2 = {}) => {
-    const val1 = parseFloat(obj1[key]);
-    const val2 = parseFloat(obj2[key]);
-    if (val1 > val2) {
-      return revert ? -1 : 1;
-    } else if (val1 < val2) {
-      return revert ? 1 : -1;
-    } else {
-      return 0;
-    }
-  };
-}
-
-// 精确到小数点后 n 位
-export function numberFix(num = 0, fix = 2) {
-  try {
-    return parseFloat(parseFloat(num).toFixed(fix));
-  } catch (e) {
-    return 0;
-  }
 }
 
 // 根据 filterResult、searchResult 解析出 selector
@@ -487,22 +334,4 @@ export function getTableConfig(tableId = '', ignoreC = [], ignoreF = []) {
       reject(err);
     });
   });
-}
-
-// 数组去重
-export function arrUnique(arr) {
-  if (!Array.isArray(arr)) return;
-  const array = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (array.indexOf(arr[i]) === -1) {
-      array.push(arr[i]);
-    }
-  }
-  return array;
-}
-
-// 时间戳转换成string time：时间戳,type:转换类型
-export function momentTimeToString(time, type = 'YYYY-MM-DD HH:mm:ss') {
-  if (!time) return '';
-  return moment(time).format(type);
 }
