@@ -217,6 +217,7 @@
             this.menuData.push(router);
           }
         });
+        this.submenuOpenKey = _.pluck(this.menuData, 'name');
       },
       menuWidth() {
         // eslint-disable-next-line no-unreachable
