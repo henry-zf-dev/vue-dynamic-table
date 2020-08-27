@@ -25,7 +25,7 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/Domain.vue')
+    component: () => import('../../pages/otherCulture/traditionFestival/TraditionFestival.vue')
   },
   // 生肖文化
   zodiacCulture: {
@@ -39,7 +39,7 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/Domain.vue')
+    component: () => import('../../pages/otherCulture/zodiacCulture/ZodiacCulture.vue')
   },
   // 饮食厨艺
   cuisineCulinary: {
@@ -53,7 +53,7 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/Domain.vue')
+    component: () => import('../../pages/otherCulture/cuisineCulinary/CuisineCulinary.vue')
   },
   // 音乐戏剧
   musicDrama: {
@@ -67,7 +67,7 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/Domain.vue')
+    component: () => import('../../pages/otherCulture/musicDrama/MusicDrama.vue')
   },
   // 中华武术
   ChineseWushu: {
@@ -81,7 +81,7 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/Domain.vue')
+    component: () => import('../../pages/otherCulture/ChineseWushu/ChineseWushu.vue')
   },
   // 民间工艺
   folkHandicraft: {
@@ -95,7 +95,7 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/Domain.vue')
+    component: () => import('../../pages/otherCulture/folkHandicraft/FolkHandicraft.vue')
   },
   // 少数民族
   ethnicMinority: {
@@ -109,6 +109,6 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/Domain.vue')
+    component: () => import('../../pages/otherCulture/ethnicMinority/EthnicMinority.vue')
   }
 };

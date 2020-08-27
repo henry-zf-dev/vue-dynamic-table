@@ -30,7 +30,7 @@ export default {
       ],
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/class/ClassDetail.vue')
+    component: () => import('../../pages/historyDynasty/dynastyProgress/DynastyProgress.vue')
   },
   // 重大事件
   historyMilestone: {
@@ -49,7 +49,7 @@ export default {
       ],
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/class/ClassEdit.vue')
+    component: () => import('../../pages/historyDynasty/historyMilestone/HistoryMilestone.vue')
   },
   // 代表人物
   representative: {
@@ -68,6 +68,6 @@ export default {
       ],
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/class/ClassEdit.vue')
+    component: () => import('../../pages/historyDynasty/representative/Representative.vue')
   }
 };

@@ -25,7 +25,7 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/Domain.vue')
+    component: () => import('../../pages/literatureEducation/famousLiterature/FamousLiterature.vue')
   },
   // 神话寓言
   mythologyAllegory: {
@@ -39,7 +39,7 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/Domain.vue')
+    component: () => import('../../pages/literatureEducation/mythologyAllegory/MythologyAllegory.vue')
   },
   // 文字书法
   characterCalligraphy: {
@@ -53,6 +53,6 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/Domain.vue')
+    component: () => import('../../pages/literatureEducation/characterCalligraphy/CharacterCalligraphy.vue')
   }
 };

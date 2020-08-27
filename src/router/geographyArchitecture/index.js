@@ -25,7 +25,7 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/Domain.vue')
+    component: () => import('../../pages/geographyArchitecture/mountainsRivers/MountainsRivers.vue')
   },
   // 著名建筑
   famousArchitecture: {
@@ -39,7 +39,7 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/DomainDetail.vue')
+    component: () => import('../../pages/geographyArchitecture/famousArchitecture/FamousArchitecture.vue')
   },
   // 地域文化
   regionalCulture: {
@@ -53,6 +53,6 @@ export default {
       icon: 'icon-nav-gaojing',
       table: [tableIdConfig.class]
     },
-    component: () => import('../../pages/domain/DomainDetail.vue')
+    component: () => import('../../pages/geographyArchitecture/regionalCulture/RegionalCulture.vue')
   }
 };
