@@ -1,5 +1,5 @@
 <template>
-  <div class="dynasty-progress-page" style="padding-top: 60px">
+  <div class="dynasty-progress-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

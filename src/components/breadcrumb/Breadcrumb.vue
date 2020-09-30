@@ -1,76 +1,84 @@
 <template>
-  <el-row
+  <div
     :id="breadcrumbId"
-    :style="{top: breadcrumbTop, left: asideMenuCollapsed ? '64px' : '250px'}"
+    :style="{top: `${breadcrumbTop}px`, height: `${optHeight}px`, left: asideMenuCollapsed ? '64px' : '250px'}"
     class="breadcrumb-container">
-    <el-col v-if="title" :span="titleSpan" class="pad-top pad-btm">
-      <el-breadcrumb class="mar-btm">
-        <el-breadcrumb-item v-for="(item, idx) in breadcrumb" :key="idx">
+    <div v-if="tabData.length > 0">
+      <el-tabs v-model="activeName" class="header6" @tab-click="tabClick">
+        <el-tab-pane
+          v-for="(tab, index) in tabData"
+          :key="index"
+          :label="tab.label"
+          :name="tab.name">
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+    <div v-else class="height-100">
+      <div v-if="title" class="pad-top pad-btm-10">
+        <el-breadcrumb>
+          <el-breadcrumb-item v-for="(item, idx) in breadcrumb" :key="idx">
+            <span
+              :class="getBreadcrumbClass(idx)"
+              class="header7"
+              @click="breadcrumbClicked(item)">{{ item.title }}</span>
+          </el-breadcrumb-item>
+        </el-breadcrumb>
+        <div class="breadcrumb-title-container">
           <span
-            :class="getBreadcrumbClass(idx)"
-            class="header7"
-            @click="breadcrumbClicked(item)">{{ item.title }}</span>
-        </el-breadcrumb-item>
-      </el-breadcrumb>
-      <div class="position-relative">
-        <span
-          class="iconfont icon-zujiantubiao-fanhui breadcrumb-back-icon"
-          @click="$router.go(-1)"></span>
-        <div class="header3 pad-lft-30 limited-text" style="max-width: 100%;">
-          <span
-            :class="{'breadcrumb-title': titleWithHref}"
-            @click="clickTitle">{{ title }}</span>
+            class="iconfont icon-zujiantubiao-fanhui breadcrumb-back-icon"
+            @click="$router.go(-1)"></span>
+          <div class="header4 pad-lft-30 limited-text max-width-60">
+            <span
+              :class="{'breadcrumb-title': titleWithHref}"
+              @click="clickTitle">{{ title }}</span>
+          </div>
+        </div>
+        <div v-if="subtitle.show">
+          <div v-if="subtitle.text" class="breadcrumb-subtitle limited-text">
+            <el-tooltip :open-delay="500" :content="subtitle.text" placement="top">
+              <span>{{ subtitle.text }}</span>
+            </el-tooltip>
+          </div>
+          <div v-else class="breadcrumb-subtitle limited-text">
+            <span>{{ `注：该${subtitle.title}由${subtitle.createdPerson || '系统'}创建于${subtitle.createdTime||''}，` }}</span>
+            <span>{{ `最后由${subtitle.updatedPerson || '系统'}修改于${subtitle.updatedTime||''}` }}</span>
+          </div>
         </div>
       </div>
-      <div v-if="subtitle.show">
-        <div v-if="subtitle.text" class="breadcrumb-subtitle limited-text" style="max-width: 100%;">
-          <el-tooltip :open-delay="500" :content="subtitle.text" placement="top">
-            <span>{{ subtitle.text }}</span>
-          </el-tooltip>
-        </div>
-        <div v-else class="breadcrumb-subtitle limited-text" style="max-width: 100%;">
-          <span>{{ `注：该${subtitle.title}由${subtitle.createdPerson || '系统'}创建于${subtitle.createdTime}，` }}</span>
-          <span>{{ `最后由${subtitle.updatedPerson || '系统'}修改于${subtitle.updatedTime}` }}</span>
+      <div v-else class="display-table height-100">
+        <div class="display-table-cell vertical-align-middle">
+          <el-breadcrumb>
+            <el-breadcrumb-item v-for="(item, idx) in breadcrumb" :key="idx">
+              <span
+                :class="getBreadcrumbClass(idx)"
+                class="header6"
+                @click="breadcrumbClicked(item)">{{ item.title }}</span>
+            </el-breadcrumb-item>
+          </el-breadcrumb>
         </div>
       </div>
-    </el-col>
-    <el-col v-else :span="titleSpan" style="padding: 23px 0">
-      <el-breadcrumb>
-        <el-breadcrumb-item v-for="(item, idx) in breadcrumb" :key="idx">
-          <span
-            :class="getBreadcrumbClass(idx)"
-            class="header6"
-            @click="breadcrumbClicked(item)">{{ item.title }}</span>
-        </el-breadcrumb-item>
-      </el-breadcrumb>
-    </el-col>
-    <el-col :span="optSpan" class="text-align-right">
-      <div v-for="(opt, idx) in optData" :key="idx" class="display-inline-block">
+    </div>
+    <div class="breadcrumb-opt-container">
+      <div v-if="extraTitle" class="display-table height-100">
+        <span class="breadcrumb-extra-title">{{ extraTitle }}</span>
+      </div>
+      <div v-for="opt in optData" :key="opt.label" class="breadcrumb-opt-item-container">
         <div
-          v-if="opt.type === 'btn'"
-          :style="{height: optHeight}"
-          class="breadcrumb-opt-btn"
+          v-if="opt.type === 'btn' && !opt.hide"
+          class="breadcrumb-opt-btn-container"
           @click="opt.callback">
-          <div class="text-align-center">
-            <i
-              :class="[opt.icon, title ? 'font-size-24' : 'font-size-20']"
-              :style="{paddingTop: optPadding}"
-              class="iconfont font-size-24 display-block"></i>
+          <div class="breadcrumb-opt-btn-content">
+            <i :class="[opt.icon]" class="iconfont font-size-20 display-block"></i>
             <span class="mar-top-5 display-block">{{ opt.label }}</span>
           </div>
         </div>
         <el-dropdown
-          v-if="opt.type === 'dropdown'"
-          class="display-inline-block"
+          v-if="opt.type === 'dropdown' && !opt.hide"
+          class="height-100"
           @command="opt.callback">
-          <div
-            :style="{height: optHeight}"
-            class="breadcrumb-opt-btn">
-            <div class="text-align-center">
-              <i
-                :class="[opt.icon, title ? 'font-size-24' : 'font-size-20']"
-                :style="{paddingTop: optPadding}"
-                class="iconfont display-block"></i>
+          <div class="breadcrumb-opt-btn-container">
+            <div class="breadcrumb-opt-btn-content">
+              <i :class="[opt.icon]" class="iconfont font-size-20 display-block"></i>
               <span class="mar-top-5 display-block">{{ opt.label }}</span>
             </div>
           </div>
@@ -84,8 +92,8 @@
           </el-dropdown-menu>
         </el-dropdown>
       </div>
-    </el-col>
-  </el-row>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -96,9 +104,6 @@
 
   export default {
     name: 'Breadcrumb',
-    model: {
-      event: 'change'
-    },
     props: {
       titleSpan: {
         type: Number,
@@ -131,6 +136,20 @@
           };
         }
       },
+      currentTab: {
+        type: String,
+        default: ''
+      },
+      tabData: {
+        type: Array,
+        default: () => {
+          return [];
+        }
+      },
+      extraTitle: {
+        type: String,
+        default: ''
+      },
       optData: {
         type: Array,
         default: () => {
@@ -141,16 +160,17 @@
     data() {
       return {
         commonString: commonString,
-        breadcrumbId: 'breadcrumbId'
+        breadcrumbId: 'breadcrumbId',
+        activeName: ''
       };
     },
     computed: {
       ...mapState(['browserSuggest', 'wsReconnecting', 'asideMenuCollapsed']),
       breadcrumbTop() {
-        let top = 60;
+        let top = 0;
         this.browserSuggest && (top += 30);
         this.wsReconnecting && (top += 30);
-        return `${top}px`;
+        return top;
       },
       breadcrumb() {
         return this.$route.meta.breadcrumb || [];
@@ -159,25 +179,18 @@
         return this.breadcrumb.length > 0 ? this.breadcrumb[0].title : commonString.unknown;
       },
       optHeight() {
-        if (this.title) {
-          if (this.subtitle.show) {
-            return '106px';
-          } else {
-            return '80px';
-          }
+        if (this.tabData.length > 0) {
+          return 50;
         } else {
-          return '60px';
-        }
-      },
-      optPadding() {
-        if (this.title) {
-          if (this.subtitle.show) {
-            return '28px';
+          if (this.title) {
+            if (this.subtitle.show) {
+              return 100;
+            } else {
+              return 80;
+            }
           } else {
-            return '15px';
+            return 50;
           }
-        } else {
-          return '6px';
         }
       }
     },
@@ -187,6 +200,12 @@
       },
       subtitle() {
         this.calculateHeight();
+      },
+      currentTab: {
+        handler() {
+          this.activeName = this.currentTab;
+        },
+        immediate: true
       }
     },
     mounted() {
@@ -199,7 +218,7 @@
         if (!breadcrumb) return;
         const erd = elementResizeDetectorMaker();
         erd.listenTo(breadcrumb, (element) => {
-          this.$emit('change', element.offsetHeight, element.offsetWidth);
+          this.$store.commit('updateBreadcrumbHeight', element.offsetHeight);
         });
       },
       clickTitle() {
@@ -215,6 +234,9 @@
       breadcrumbClicked(item = {}) {
         if (!item.name) return;
         this.$router.push({name: item.name, params: this.$route.params, query: this.$route.query});
+      },
+      tabClick(tab) {
+        this.$emit('switchTab', tab.name);
       }
     }
   };
@@ -230,9 +252,15 @@
     padding: 0 24px;
     box-shadow: 0 2px 8px 0 @colorBlackAlpha05;
 
+    .breadcrumb-title-container {
+      position: relative;
+      margin-top: 15px;
+    }
+
     .breadcrumb-subtitle {
       font-size: @sizeSecond;
       color: @colorGray60;
+      max-width: 60%;
       margin-top: 10px;
     }
 
@@ -254,16 +282,43 @@
       text-decoration: underline;
     }
 
-    .breadcrumb-opt-btn {
-      padding: 0 20px;
-      font-size: @sizeSecond;
-      color: @colorGray40;
-      cursor: pointer;
-    }
+    .breadcrumb-opt-container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: @paddingMain;
 
-    .breadcrumb-opt-btn:hover {
-      background: @colorGray98;
-      color: @colorPrimary;
+      .breadcrumb-extra-title {
+        font-size: @sizeMain;
+        color: @colorGray40;
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      .breadcrumb-opt-item-container {
+        display: inline-block;
+        height: 100%;
+
+        .breadcrumb-opt-btn-container {
+          padding: 0 20px;
+          font-size: @sizeSecond;
+          color: @colorGray40;
+          height: 100%;
+          display: table;
+          cursor: pointer;
+
+          .breadcrumb-opt-btn-content {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center
+          }
+        }
+
+        .breadcrumb-opt-btn-container:hover {
+          background: @colorGray98;
+          color: @colorPrimary;
+        }
+      }
     }
 
   }

@@ -249,7 +249,7 @@
 /* BEM
  -------------------------- */
 .el-divider {
-  background-color: #DCDFE6;
+  background-color: #E0E0E0;
   position: relative; }
   .el-divider--horizontal {
     display: block;
@@ -268,7 +268,7 @@
     background-color: #FFFFFF;
     padding: 0 20px;
     font-weight: 500;
-    color: #303133;
+    color: #1A1A1A;
     font-size: 14px; }
     .el-divider__text.is-left {
       left: 20px;

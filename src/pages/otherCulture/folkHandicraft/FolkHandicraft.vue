@@ -1,5 +1,5 @@
 <template>
-  <div class="folk-handicraft-page" style="padding-top: 60px">
+  <div class="folk-handicraft-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

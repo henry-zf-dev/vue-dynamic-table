@@ -1,5 +1,5 @@
 <template>
-  <div class="mountains-rivers-page" style="padding-top: 60px">
+  <div class="mountains-rivers-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

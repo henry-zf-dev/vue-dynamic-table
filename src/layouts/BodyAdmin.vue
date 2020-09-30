@@ -1,47 +1,24 @@
 <template>
   <div>
-    <div :style="{height: '60px'}" class="head-container">
-      <div class="color-gray-20 head-content">
-        <i
-          :class="menuCollapsed ? 'iconfont icon-zujiantubiao-xinxijiegou-xiangyou' : 'iconfont icon-nav-shouqi'"
-          class="header-collapse-icon cursor-pointer font-size-20 font-gray-70"
-          @click="collapseChanged"></i>
-        <img class="header-logo" src="../assets/img/logo-green.png">
-        <div class="header-right-container">
-          <img class="user-thumbnail" src="../assets/img/one-authority.png">
-          <el-dropdown trigger="hover" class="cursor-pointer pad-lft-10" @command="headerMoreOptCommand">
-            <span class="el-dropdown-link font-size-main font-gray-90">
-              {{ userInfo.username }}<i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu>
-              <el-dropdown-item disabled class="body-role" command="modifyPwd">
-                <span class="role-size">{{ userInfo.userRole.name || commonString.unknown }}</span>
-              </el-dropdown-item>
-              <el-dropdown-item disabled class="body-user">
-                <el-row>
-                  <el-col :span="24">
-                    <span class="user-name-size">{{ userInfo.username }}</span>
-                  </el-col>
-                </el-row>
-                <el-row>
-                  <el-col :span="24">
-                    <span class="email-size">{{ userInfo.userEmail?(userInfo.userEmail.length>18?userInfo.userEmail.substring(0,15)+'...':userInfo.userEmail):'' }}</span>
-                  </el-col>
-                </el-row>
-              </el-dropdown-item>
-              <el-divider></el-divider>
-              <el-dropdown-item command="modifyPwd">修改密码</el-dropdown-item>
-              <el-dropdown-item command="logout">退出登录</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </div>
-      </div>
-    </div>
     <div
       v-loading="menuLoading"
-      :style="{top: '60px', width: menuCollapsed ? '64px' : '250px'}"
-      class="color-bg-dark aside-container"
+      :style="{top: `${headerHeight}px`, width: menuCollapsed ? '64px' : '250px'}"
+      class="aside-container"
       element-loading-background="rgba(0, 0, 0, 0.4)">
+      <div class="menu-header-container">
+        <i
+          :class="menuCollapsed ? 'iconfont icon-zujiantubiao-xinxijiegou-xiangyou' : 'iconfont icon-nav-shouqi'"
+          class="header-collapse-icon cursor-pointer"
+          @click="collapseChanged"></i>
+        <div v-if="!menuCollapsed">
+          <div class="divider-vertical"></div>
+          <img
+            class="header-logo"
+            src="../assets/img/logo-ezpro1.png"
+            @click="jumpToHomePage">
+        </div>
+        <div class="divider-horizontal"></div>
+      </div>
       <el-menu
         :collapse="menuCollapsed"
         :collapse-transition="false"
@@ -51,16 +28,13 @@
         <div v-for="(router, idx) in menuData" :key="idx">
           <el-submenu :index="`${router.name}`">
             <template slot="title">
-              <i
-                :class="[router.meta.icon, {'active-submenu-icon' : judgeIconActive(router, true)}]"
-                class="iconfont"></i>
-              <span v-if="!menuCollapsed">
-                <span slot="title" class="mar-lft-10">{{ router.meta.label }}</span>
-                <i
-                  :class="[submenuOpenKey.includes(router.name) ? 'collapse-icon-inactive' : 'collapse-icon-active']"
-                  class="iconfont submenu-collapse-icon icon-zujiantubiao-xinxijiegou-xiangxia"
-                ></i>
-              </span>
+              <div :class="{'active-submenu' : judgeIconActive(router, true)}">
+                <i :class="router.meta.icon" class="iconfont"></i>
+                <span v-if="!menuCollapsed">
+                  <span slot="title" class="mar-lft-10">{{ router.meta.label }}</span>
+                  <i class="iconfont submenu-collapse-icon icon-zujiantubiao-xinxijiegou-xiangxia"></i>
+                </span>
+              </div>
             </template>
             <el-menu-item
               v-for="(subRouter, idx) in router.children"
@@ -73,14 +47,48 @@
           </el-submenu>
         </div>
       </el-menu>
-      <div v-if="!menuCollapsed" class="version_div color-bg-dark">
-        <span>版本号: {{ version }}</span>
+      <el-popover
+        placement="right"
+        width="160"
+        class="display-none"
+        trigger="click">
+        <div class="user-info-opt" @click="headerMoreOptCommand('modifyPwd')">修改密码</div>
+        <div class="user-info-opt" @click="headerMoreOptCommand('logout')">退出登录</div>
+        <div
+          slot="reference"
+          :style="{width: menuCollapsed ? '64px' : '250px'}"
+          class="user-info-container">
+          <div class="user-info-content">
+            <div v-if="!menuCollapsed">
+              <div class="user-name">
+                <span>{{ userInfo.username }}</span>
+                <i class="iconfont icon-zujiantubiao-xinxijiegou-xiangyou user-name-icon"></i>
+              </div>
+              <div class="user-other-info">
+                <span class="user-role limited-text">{{ userInfo.userRole.name || commonString.unknown }}</span>
+                <span class="user-email limited-text">{{ userInfo.userEmail }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </el-popover>
+      <div v-if="!menuCollapsed">
+        <div class="version-container">
+          <span>版本号: {{ version }}</span>
+        </div>
       </div>
     </div>
     <div
-      :style="{top: '60px', bottom: 0, left: menuCollapsed ? '65px' : '251px', right: 0}"
+      :style="{
+        marginTop: `${headerHeight}px`,
+        marginLeft: menuCollapsed ? '65px' : '251px', right: 0,
+        paddingTop: `${breadcrumbHeight}px`
+      }"
       class="root-container">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
     </div>
     <el-dialog :visible.sync="showModifyPwdDialog" title="修改密码" width="500px" @close="modifyPwdCancel">
       <el-form :model="modifyPwdForm" :ref="modifyRef" :rules="modifyPwdFormRule" size="medium" label-width="100px">
@@ -120,6 +128,7 @@
         userInfo: getUserInfo(),
         menuLoading: false,
         menuCollapsed: false,
+        menuForceCollapsed: false, // 用户手动点击折叠侧边栏，则不进行页面宽度监听
         submenuOpenKey: [], // 记录所有展开了的子菜单
         menuData: [],
         showModifyPwdDialog: false,
@@ -164,8 +173,19 @@
     },
     computed: {
       ...mapState([
-        'routeParamState', 'clientWidth', 'clientHeight'
-      ])
+        'clientWidth', 'clientHeight',
+        'routeParamState', 'breadcrumbHeight'
+      ]),
+      breadcrumb() {
+        return this.$route.meta.breadcrumb;
+      },
+      headerHeight() {
+        let height = 0;
+        this.browserSuggest && (height += 30);
+        this.wsReconnecting && (height += 30);
+        this.$store.commit('updateGlobalNotifyHeight', height);
+        return height;
+      }
     },
     watch: {
       $route(to = {}, from = {}) {
@@ -181,6 +201,8 @@
       menuCollapsed: {
         handler(val) {
           this.$store.commit('updateAsideMenuCollapsed', val);
+          // 强制把所有子菜单都打开
+          this.submenuOpenKey = _.pluck(this.menuData, 'name');
         },
         immediate: true
       },
@@ -195,16 +217,11 @@
       this.initRouteParamState();
       this.setParamStateFromUrl();
     },
-    mounted() {
-      // 监听窗口大小
-      window.onresize = () => {
-        return (() => {
-          this.menuWidth();
-        })();
-      };
-    },
     methods: {
       // ===== 页面逻辑处理相关 =====//
+      jumpToHomePage() {
+        this.$router.push({name: routerMeta.dashboard.name});
+      },
       initMenu() {
        const menuData = assembleTreeFromArray({
           srcData: Object.values(routerMeta),
@@ -220,19 +237,12 @@
         this.submenuOpenKey = _.pluck(this.menuData, 'name');
       },
       menuWidth() {
-        // eslint-disable-next-line no-unreachable
-        if (document.body.clientWidth < 1360) {
-          this.menuCollapsed = false;
-          this.collapseChanged();
-        } else {
-          this.menuCollapsed = true;
-          this.collapseChanged();
-        }
+        if (this.menuForceCollapsed) return;
+        this.menuCollapsed = this.clientWidth < 1360;
       },
       collapseChanged() {
         this.menuCollapsed = !this.menuCollapsed;
-        // 强制把所有子菜单都打开
-        this.submenuOpenKey = _.pluck(this.menuData, 'name');
+        this.menuForceCollapsed = this.menuCollapsed;
       },
       submenuOpen(key) {
         !this.submenuOpenKey.includes(key) && this.submenuOpenKey.push(key);
@@ -381,98 +391,60 @@
       modifyPwdCancel() {
         this.showModifyPwdDialog = false;
       }
-
     }
   };
 </script>
 
 <style lang="less">
 
-  .head-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2000;
-  }
-
-  .head-content {
-    height: 60px;
-    padding: 0 20px;
+  .menu-header-container {
+    height: 50px;
+    text-align: center;
     position: relative;
 
     .header-collapse-icon {
       position: absolute;
-      top: 17px;
+      top: 20px;
+      left: 25px;
+      font-size: @sizeRegular;
+      color: @colorGray70;
+    }
+
+    .divider-vertical {
+      position: absolute;
+      top: 20px;
+      left: 60px;
+      height: 15px;
+      width: 2px;
+      background: @colorWhiteAlpha1;
     }
 
     .header-logo {
-      width: 90px;
-      height: 60px;
-      object-fit: none;
-      margin-left: 40px;
+      width: 72px;
+      height: 48px;
+      object-fit: contain;
+      cursor: pointer;
+      position: absolute;
+      top: 2px;
+      left: 80px;
     }
 
-    .header-right-container {
-      float: right;
-      position: relative;
-      padding-right: 20px;
-      line-height: 60px;
-
-      .user-thumbnail {
-        width: 32px;
-        height: 32px;
-        position: absolute;
-        top: 14px;
-        left: -45px;
-      }
+    .divider-horizontal {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      height: 1px;
+      background: @colorWhiteAlpha1;
     }
-  }
-
-  .body-role {
-    width: 170px;
-    height: 24px;
-    line-height: 24px !important;
-    background: @colorBgWhite;
-  }
-
-  .user-name-size {
-    font-size: 14px;
-    font-weight: bold;
-    height: 16px;
-    color: @colorGray20;
-    float: left
-  }
-
-  .role-size {
-    width: 36px;
-    height: 12px;
-    font-size: 12px;
-    font-weight: 400;
-    color: @colorGray60;
-    line-height: 12px;
-  }
-
-  .email-size {
-    font-size: 12px;
-    color: @colorGray60;
-    height: 12px;
-    float: left;
-    margin-bottom: 20px;
-  }
-
-  .body-user {
-    width: 170px;
-    height: 56px;
-    background: @colorBgWhite;
   }
 
   .aside-container {
     position: fixed;
     bottom: 0;
     left: 0;
-    padding-top: 10px;
     padding-bottom: 50px;
+    background: @colorPrimary3;
     overflow: auto;
   }
 
@@ -480,25 +452,116 @@
     padding: 0;
     background: @colorGray96;
     box-shadow: -1px 0 0 @colorGray90;
-    position: absolute;
-    overflow: auto;
+    overflow: hidden;
   }
 
   .active-submenu-icon {
-    color: @colorPrimary !important;
     font-weight: bold !important;
   }
 
-  .version_div {
+  .active-submenu {
+    background-color: @menuHoverColor !important;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-left: 25px !important;
+    box-shadow: 2px 0 0 0 @colorPrimary2 inset;
+
+    i {
+      font-weight: bold !important;
+    }
+  }
+
+  .user-info-opt {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .user-info-opt:hover {
+    background: @colorGray96;
+    color: @colorPrimary;
+  }
+
+  .user-info-container {
+    position: fixed;
+    bottom: 36px;
+    height: 80px;
+    background: @colorPrimary3;
+
+    .user-info-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      color: @colorWhite;
+      cursor: pointer;
+
+      .user-header {
+        position: absolute;
+        top: 8px;
+      }
+
+      .user-name {
+        position: absolute;
+        top: 8px;
+        left: 80px;
+        font-size: @sizeMain;
+        font-weight: bold;
+
+        .user-name-icon {
+          font-size: 10px;
+          font-weight: normal;
+          color: @colorWhiteAlpha1;
+        }
+      }
+
+      .user-other-info {
+        position: absolute;
+        top: 30px;
+        left: 80px;
+        font-size: @sizeSecond;
+
+        .user-role {
+          max-width: 60px;
+          display: inline-block;
+        }
+
+        .user-email {
+          max-width: 100px;
+          display: inline-block;
+        }
+
+        .user-email:before {
+          content: "|";
+          width: 1px;
+          height: 10px;
+          margin-left: 5px;
+          margin-right: 8px;
+          color: @colorWhiteAlpha1;
+        }
+
+      }
+    }
+
+    .user-info-content:hover, .user-info-content:focus {
+      background: @menuHoverColor;
+    }
+  }
+
+  .version-container {
     position: fixed;
     bottom: 0;
     height: 35px;
     width: 250px;
-    border-top: 1px solid @colorGray40;
+    border-top: 1px solid @colorWhiteAlpha1;
     text-align: center;
     line-height: 35px;
     color: @colorGray90;
     font-size: 12px;
+    background: @colorPrimary3;
   }
 
 </style>

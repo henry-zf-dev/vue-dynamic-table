@@ -1,5 +1,5 @@
 <template>
-  <div class="character-calligraphy-page" style="padding-top: 60px">
+  <div class="character-calligraphy-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

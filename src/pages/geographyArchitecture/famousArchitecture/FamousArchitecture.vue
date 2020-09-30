@@ -1,5 +1,5 @@
 <template>
-  <div class="famous-architecture-page" style="padding-top: 60px">
+  <div class="famous-architecture-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

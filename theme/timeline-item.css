@@ -285,11 +285,11 @@
       width: 14px;
       height: 14px; }
     .el-timeline-item__node--primary {
-      background-color: #0ABF89; }
+      background-color: #465499; }
     .el-timeline-item__node--success {
-      background-color: #0ABF89; }
+      background-color: #26BF7F; }
     .el-timeline-item__node--warning {
-      background-color: #FACC14; }
+      background-color: #FAAD14; }
     .el-timeline-item__node--danger {
       background-color: #EE5443; }
     .el-timeline-item__node--info {
@@ -306,9 +306,9 @@
     -ms-flex-align: center;
     align-items: center; }
   .el-timeline-item__content {
-    color: #303133; }
+    color: #1A1A1A; }
   .el-timeline-item__timestamp {
-    color: #909399;
+    color: #999999;
     line-height: 1;
     font-size: 13px; }
     .el-timeline-item__timestamp.is-top {

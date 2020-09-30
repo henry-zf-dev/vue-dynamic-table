@@ -1,5 +1,5 @@
 <template>
-  <div class="regional-culture-page" style="padding-top: 60px">
+  <div class="regional-culture-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

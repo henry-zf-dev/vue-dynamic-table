@@ -1,5 +1,5 @@
 <template>
-  <div class="music-drama-page" style="padding-top: 60px">
+  <div class="music-drama-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

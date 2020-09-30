@@ -1,5 +1,5 @@
 <template>
-  <div class="thought-factions-page" style="padding-top: 60px">
+  <div class="thought-factions-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

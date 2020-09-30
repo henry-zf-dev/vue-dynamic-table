@@ -253,7 +253,7 @@
   line-height: 1; }
   .el-progress__text {
     font-size: 14px;
-    color: #606266;
+    color: #666666;
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;
@@ -285,13 +285,13 @@
     padding-right: 0;
     margin-right: 0; }
   .el-progress.is-success .el-progress-bar__inner {
-    background-color: #0ABF89; }
+    background-color: #26BF7F; }
   .el-progress.is-success .el-progress__text {
-    color: #0ABF89; }
+    color: #26BF7F; }
   .el-progress.is-warning .el-progress-bar__inner {
-    background-color: #FACC14; }
+    background-color: #FAAD14; }
   .el-progress.is-warning .el-progress__text {
-    color: #FACC14; }
+    color: #FAAD14; }
   .el-progress.is-exception .el-progress-bar__inner {
     background-color: #EE5443; }
   .el-progress.is-exception .el-progress__text {
@@ -317,7 +317,7 @@
     left: 0;
     top: 0;
     height: 100%;
-    background-color: #0ABF89;
+    background-color: #465499;
     text-align: right;
     border-radius: 100px;
     line-height: 1;

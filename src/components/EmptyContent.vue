@@ -1,11 +1,16 @@
 <template>
-  <div class="empty-content-container">
+  <div
+    :style="{
+      minHeight: `${minHeight}px`,
+      boxShadow: showBorder ? '0 0 0 2px #F5F5F5 inset' : 'none'
+    }"
+    class="empty-content-container">
     <div class="empty-content-content">
       <img
         v-show="!hideImage"
         :style="{width: `${imageSize}px`, height: `${imageSize}px`}"
         src="../assets/img/empty-state.png"
-        class="mar-btm-20 mar-top-40">
+        class="mar-btm-20">
       <div class="content-empty-text">{{ emptyText }}</div>
       <div v-if="optData.length > 0" class="mar-top-20">
         <div v-for="(opt, idx) in optData" :key="idx" class="display-inline-block">
@@ -46,10 +51,13 @@
 </template>
 
 <script>
-
   export default {
     name: 'EmptyContent',
     props: {
+      minHeight: {
+        type: Number,
+        default: 600
+      },
       hideImage: {
         type: Boolean,
         default: false
@@ -62,6 +70,10 @@
         type: String,
         default: '暂无数据'
       },
+      showBorder: {
+        type: Boolean,
+        default: false
+      },
       optData: {
         type: Array,
         default: () => {
@@ -71,6 +83,9 @@
     },
     data() {
       return {};
+    },
+    methods: {
+
     }
   };
 </script>
@@ -79,17 +94,13 @@
 
   .empty-content-container {
     text-align: center;
-    position: absolute;
-    top: 0;
-    left: 0;
+    border-radius: @borderRadiusSecond;
     width: 100%;
-    height: 100%;
     display: table;
 
     .empty-content-content {
       display: table-cell;
       vertical-align: middle;
-      height: 100%;
 
       .content-empty-text {
         font-size: @sizeMain;
@@ -110,7 +121,6 @@
         width: 200px;
       }
     }
-
   }
 
 </style>

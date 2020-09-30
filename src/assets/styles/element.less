@@ -30,12 +30,9 @@
   color: @colorGray20;
 }
 
-/*导航栏*/
-@menuHoverColor: #595959;
-
 .el-menu {
   border: none !important;
-  background-color: @colorBgDark !important;
+  background-color: @colorPrimary3 !important;
   -moz-user-select: none !important;
   -webkit-user-select: none !important;
   -ms-user-select: none !important;
@@ -93,29 +90,16 @@
     font-weight: bold;
     outline: 0;
     background-color: @menuHoverColor;
-    color: @colorPrimary !important;
-    border-left: 2px solid;
-
-    i {
-      color: @colorPrimary !important;
-    }
-
-    a {
-      color: @colorPrimary !important;
-    }
+    box-shadow: 2px 0 0 0 @colorPrimary2 inset;
   }
 }
 
 .el-menu--popup {
-  background-color: @colorBgDark !important;
+  background-color: @colorPrimary3 !important;
   border: 1px solid @menuHoverColor !important;
   box-shadow: 0 6px 10px 0 @menuHoverColor !important;
   border-radius: @borderRadiusMain !important;
   min-width: 220px !important;
-
-  i {
-    color: @colorGray90 !important;
-  }
 
   .menu-item-collapse {
     a {

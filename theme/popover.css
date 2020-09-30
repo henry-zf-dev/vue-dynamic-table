@@ -585,7 +585,7 @@
   border: 1px solid #EBEEF5;
   padding: 12px;
   z-index: 2000;
-  color: #606266;
+  color: #666666;
   line-height: 1.4;
   text-align: justify;
   font-size: 14px;
@@ -595,7 +595,7 @@
   .el-popover--plain {
     padding: 18px 20px; }
   .el-popover__title {
-    color: #303133;
+    color: #1A1A1A;
     font-size: 16px;
     line-height: 1;
     margin-bottom: 12px; }

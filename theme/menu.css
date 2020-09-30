@@ -507,7 +507,7 @@
       line-height: 60px;
       margin: 0;
       border-bottom: 2px solid transparent;
-      color: #909399; }
+      color: #999999; }
       .el-menu--horizontal > .el-menu-item a,
       .el-menu--horizontal > .el-menu-item a:hover {
         color: inherit; }
@@ -518,15 +518,15 @@
       .el-menu--horizontal > .el-submenu:focus, .el-menu--horizontal > .el-submenu:hover {
         outline: none; }
         .el-menu--horizontal > .el-submenu:focus .el-submenu__title, .el-menu--horizontal > .el-submenu:hover .el-submenu__title {
-          color: #303133; }
+          color: #1A1A1A; }
       .el-menu--horizontal > .el-submenu.is-active .el-submenu__title {
-        border-bottom: 2px solid #0ABF89;
-        color: #303133; }
+        border-bottom: 2px solid #465499;
+        color: #1A1A1A; }
       .el-menu--horizontal > .el-submenu .el-submenu__title {
         height: 60px;
         line-height: 60px;
         border-bottom: 2px solid transparent;
-        color: #909399; }
+        color: #999999; }
         .el-menu--horizontal > .el-submenu .el-submenu__title:hover {
           background-color: #fff; }
       .el-menu--horizontal > .el-submenu .el-submenu__icon-arrow {
@@ -541,17 +541,17 @@
       height: 36px;
       line-height: 36px;
       padding: 0 10px;
-      color: #909399; }
+      color: #999999; }
     .el-menu--horizontal .el-menu .el-menu-item.is-active,
     .el-menu--horizontal .el-menu .el-submenu.is-active > .el-submenu__title {
-      color: #303133; }
+      color: #1A1A1A; }
     .el-menu--horizontal .el-menu-item:not(.is-disabled):hover,
     .el-menu--horizontal .el-menu-item:not(.is-disabled):focus {
       outline: none;
-      color: #303133; }
+      color: #1A1A1A; }
     .el-menu--horizontal > .el-menu-item.is-active {
-      border-bottom: 2px solid #0ABF89;
-      color: #303133; }
+      border-bottom: 2px solid #465499;
+      color: #1A1A1A; }
   .el-menu--collapse {
     width: 64px; }
     .el-menu--collapse > .el-menu-item [class^="el-icon-"],
@@ -607,7 +607,7 @@
   height: 56px;
   line-height: 56px;
   font-size: 14px;
-  color: #303133;
+  color: #1A1A1A;
   padding: 0 20px;
   list-style: none;
   cursor: pointer;
@@ -620,10 +620,10 @@
   .el-menu-item * {
     vertical-align: middle; }
   .el-menu-item i {
-    color: #909399; }
+    color: #999999; }
   .el-menu-item:hover, .el-menu-item:focus {
     outline: none;
-    background-color: #e7f9f3; }
+    background-color: #edeef5; }
   .el-menu-item.is-disabled {
     opacity: 0.25;
     cursor: not-allowed;
@@ -635,7 +635,7 @@
     font-size: 18px;
     vertical-align: middle; }
   .el-menu-item.is-active {
-    color: #0ABF89; }
+    color: #465499; }
     .el-menu-item.is-active i {
       color: inherit; }
 
@@ -647,7 +647,7 @@
     height: 56px;
     line-height: 56px;
     font-size: 14px;
-    color: #303133;
+    color: #1A1A1A;
     padding: 0 20px;
     list-style: none;
     cursor: pointer;
@@ -660,16 +660,16 @@
     .el-submenu__title * {
       vertical-align: middle; }
     .el-submenu__title i {
-      color: #909399; }
+      color: #999999; }
     .el-submenu__title:hover, .el-submenu__title:focus {
       outline: none;
-      background-color: #e7f9f3; }
+      background-color: #edeef5; }
     .el-submenu__title.is-disabled {
       opacity: 0.25;
       cursor: not-allowed;
       background: none !important; }
     .el-submenu__title:hover {
-      background-color: #e7f9f3; }
+      background-color: #edeef5; }
   .el-submenu .el-menu {
     border: none; }
   .el-submenu .el-menu-item {
@@ -688,7 +688,7 @@
     transition: transform .3s, -webkit-transform .3s;
     font-size: 12px; }
   .el-submenu.is-active .el-submenu__title {
-    border-bottom-color: #0ABF89; }
+    border-bottom-color: #465499; }
   .el-submenu.is-opened > .el-submenu__title .el-submenu__icon-arrow {
     -webkit-transform: rotateZ(180deg);
     transform: rotateZ(180deg); }
@@ -711,7 +711,7 @@
   padding: 7px 0 7px 20px;
   line-height: normal;
   font-size: 12px;
-  color: #909399; }
+  color: #999999; }
 
 .horizontal-collapse-transition .el-submenu__title .el-submenu__icon-arrow {
   -webkit-transition: .2s;

@@ -1,5 +1,5 @@
 <template>
-  <div class="history-representative-page" style="padding-top: 60px">
+  <div class="history-representative-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

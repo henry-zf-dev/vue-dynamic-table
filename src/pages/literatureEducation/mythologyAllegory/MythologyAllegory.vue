@@ -1,5 +1,5 @@
 <template>
-  <div class="mythology-allegory-page" style="padding-top: 60px">
+  <div class="mythology-allegory-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

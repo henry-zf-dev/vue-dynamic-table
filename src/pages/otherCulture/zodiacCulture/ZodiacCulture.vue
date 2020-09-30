@@ -1,5 +1,5 @@
 <template>
-  <div class="zodiac-culture-page" style="padding-top: 60px">
+  <div class="zodiac-culture-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

@@ -1,5 +1,5 @@
 <template>
-  <div class="cuisine-culinary-page" style="padding-top: 60px">
+  <div class="cuisine-culinary-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

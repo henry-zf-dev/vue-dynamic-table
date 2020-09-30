@@ -1,5 +1,5 @@
 <template>
-  <div class="great-thinker-page" style="padding-top: 60px">
+  <div class="great-thinker-page">
     <Breadcrumb :opt-data="defaultOptBtn"></Breadcrumb>
     <div class="page-container">
       <div class="table-container">

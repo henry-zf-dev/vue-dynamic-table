@@ -350,6 +350,18 @@ body {
   display: none;
 }
 
+.display-table {
+  display: table;
+}
+
+.display-table-cell {
+  display: table-cell;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
 .position-relative {
   position: relative;
 }
@@ -501,46 +513,6 @@ body {
 ::-webkit-scrollbar-track {
   background: @colorGray96;
 }
-
-/*下划线样式 96度灰*/
-.border-bottom-96 {
-  border-bottom: 1px solid @colorGray96;
-}
-
-/*下划线样式 90度灰*/
-.border-bottom-90 {
-  border-bottom: 1px solid @colorGray90;
-}
-
-/*全局通知栏样式*/
-.global-notification {
-  line-height: 30px;
-  text-align: center;
-  background-color: @colorPrimary;
-  color: @colorWhite;
-  font-size: @sizeSecond;
-}
-
-// 下拉框分组样式
-.el-select-group__title {
-  color: @colorGray10 !important;
-  font-size: @sizeMain !important;
-}
-
-// 手机端样式
-@media (max-width: 767px) {
-  .page-container {
-    padding: 5px;
-
-    .area-row {
-      position: fixed;
-      z-index: 1999;
-      width: calc(100% - 79px) !important;
-    }
-  }
-
-}
-
 
 
 
