@@ -1,12 +1,13 @@
 <template>
   <div
     :id="breadcrumbId"
-    :style="{top: `${breadcrumbTop}px`, height: `${optHeight}px`, left: asideMenuCollapsed ? '64px' : '250px'}"
+    :style="{top: '0', height: `${optHeight}px`, left: asideMenuCollapsed ? '64px' : '250px'}"
     class="breadcrumb-container">
     <div v-if="tabData.length > 0">
       <el-tabs v-model="activeName" class="header6" @tab-click="tabClick">
         <el-tab-pane
           v-for="(tab, index) in tabData"
+          v-if="judgePerm(tab)"
           :key="index"
           :label="tab.label"
           :name="tab.name">
@@ -64,7 +65,7 @@
       </div>
       <div v-for="opt in optData" :key="opt.label" class="breadcrumb-opt-item-container">
         <div
-          v-if="opt.type === 'btn' && !opt.hide"
+          v-if="opt.type === 'btn' && judgePerm(opt)"
           class="breadcrumb-opt-btn-container"
           @click="opt.callback">
           <div class="breadcrumb-opt-btn-content">
@@ -73,7 +74,7 @@
           </div>
         </div>
         <el-dropdown
-          v-if="opt.type === 'dropdown' && !opt.hide"
+          v-if="opt.type === 'dropdown' && judgeDropDown(opt.items) && !opt.hide"
           class="height-100"
           @command="opt.callback">
           <div class="breadcrumb-opt-btn-container">
@@ -84,7 +85,7 @@
           </div>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item
-              v-for="(item, idx) in opt.items"
+              v-for="(item, idx) in getDropDownMenu(opt.items)"
               :key="idx"
               :command="item.command">
               <i :class="item.icon" class="iconfont font-size-second"></i>&nbsp;{{ item.label }}
@@ -97,6 +98,7 @@
 </template>
 
 <script>
+  import {judgePermission} from '../../utils';
   import {commonString} from '../../config/string';
   import {mapState} from 'vuex';
 
@@ -165,13 +167,7 @@
       };
     },
     computed: {
-      ...mapState(['browserSuggest', 'wsReconnecting', 'asideMenuCollapsed']),
-      breadcrumbTop() {
-        let top = 0;
-        this.browserSuggest && (top += 30);
-        this.wsReconnecting && (top += 30);
-        return top;
-      },
+      ...mapState(['asideMenuCollapsed']),
       breadcrumb() {
         return this.$route.meta.breadcrumb || [];
       },
@@ -220,6 +216,23 @@
         erd.listenTo(breadcrumb, (element) => {
           this.$store.commit('updateBreadcrumbHeight', element.offsetHeight);
         });
+      },
+      judgePerm(opt = {}) {
+        return !opt.hide;
+      },
+      judgeDropDown(items = []) {
+        return items.find(i => {
+          return this.judgePerm(i);
+        });
+      },
+      getDropDownMenu(items = []) {
+        const menu = [];
+        items.forEach(i => {
+          if (this.judgePerm(i)) {
+            menu.push(i);
+          }
+        });
+        return menu;
       },
       clickTitle() {
         this.$emit('clickTitle');

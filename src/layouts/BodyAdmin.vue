@@ -2,7 +2,7 @@
   <div>
     <div
       v-loading="menuLoading"
-      :style="{top: `${headerHeight}px`, width: menuCollapsed ? '64px' : '250px'}"
+      :style="{top: '0', width: menuCollapsed ? '64px' : '250px'}"
       class="aside-container"
       element-loading-background="rgba(0, 0, 0, 0.4)">
       <div class="menu-header-container">
@@ -80,7 +80,7 @@
     </div>
     <div
       :style="{
-        marginTop: `${headerHeight}px`,
+        marginTop: '0',
         marginLeft: menuCollapsed ? '65px' : '251px', right: 0,
         paddingTop: `${breadcrumbHeight}px`
       }"
@@ -178,13 +178,6 @@
       ]),
       breadcrumb() {
         return this.$route.meta.breadcrumb;
-      },
-      headerHeight() {
-        let height = 0;
-        this.browserSuggest && (height += 30);
-        this.wsReconnecting && (height += 30);
-        this.$store.commit('updateGlobalNotifyHeight', height);
-        return height;
       }
     },
     watch: {

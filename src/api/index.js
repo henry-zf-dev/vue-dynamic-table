@@ -1,3 +1,4 @@
+import base from './base/index.js';
 import dynastyProgress from './historyDynasty/dynastyProgress/index.js';
 import historyMilestone from './historyDynasty/historyMilestone/index.js';
 import historyRepresentative from './historyDynasty/historyRepresentative/index.js';
@@ -18,6 +19,7 @@ import folkHandicraft from './otherCulture/folkHandicraft/index.js';
 import ethnicMinority from './otherCulture/ethnicMinority/index.js';
 
 export default {
+  base,
   dynastyProgress,
   historyMilestone,
   historyRepresentative,

@@ -1,22 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {tableIdConfig, websocketType} from '../config/common';
+import {tableIdConfig} from '../config/common';
 import {routerMeta} from '../router/routerMeta';
 
 Vue.use(Vuex);
-
-function getMsgId(msg = {}) {
-  return msg.id || '';
-}
-
-function updateSocketMsgStore(msgId, src = {}, dest = {}) {
-  const lastStatus = src[msgId];
-  if (!lastStatus) {
-    src[msgId] = {...dest};
-  } else {
-    src[msgId] = {...lastStatus, ...dest};
-  }
-}
 
 // tableState 初始化值
 function initializeTableState() {
@@ -43,10 +30,8 @@ export default new Vuex.Store({
   state: {
     clientWidth: 0,
     clientHeight: 0,
-    globalNotifyHeight: 0,
     breadcrumbHeight: 0,
     asideMenuCollapsed: false,
-    tokenCount: true,
     tableState: {},
     // 每个路由 URL 上存储的参数信息
     routeParamState: {}
@@ -57,9 +42,6 @@ export default new Vuex.Store({
     },
     updateClientHeight(state, clientHeight) {
       state.clientHeight = clientHeight;
-    },
-    updateGlobalNotifyHeight(state, globalNotifyHeight) {
-      state.globalNotifyHeight = globalNotifyHeight;
     },
     updateBreadcrumbHeight(state, breadcrumbHeight) {
       state.breadcrumbHeight = breadcrumbHeight;
@@ -115,8 +97,8 @@ export default new Vuex.Store({
     // store 清空
     clearStore(state) {
       state.asideMenuCollapsed = false;
-      state.tokenCount = true;
       state.tableState = {};
+      state.routeParamState = {};
     }
   }
 });

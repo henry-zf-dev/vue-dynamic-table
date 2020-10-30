@@ -8,7 +8,7 @@ import App from './App';
 import store from './store/index';
 import VueRouter from 'vue-router';
 import jQuery from 'jquery';
-import ElementUI, {Notification} from 'element-ui';
+import ElementUI from 'element-ui';
 import underscore, {_} from 'vue-underscore';
 import moment from 'moment';
 import router from './router/routes';
@@ -18,6 +18,7 @@ import './assets/styles/app.less';
 import {commonString} from "./config/string";
 import {getStorage, StorageKey} from "./config/sessions";
 import {routerMeta} from "./router/routerMeta";
+import CustomNotify from './components/customNotify';
 
 moment.locale('zh-cn');
 window.$ = jQuery;
@@ -29,6 +30,7 @@ Vue.config.productionTip = false;
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 Vue.use(underscore);
+Vue.prototype.$customNotify = CustomNotify;
 
 // 判断当前路由是否存在和有权限
 function judgeRouteStatus(route = {}) {
@@ -69,11 +71,10 @@ router.beforeEach((to, from, next) => {
   } else {
     if (!to.meta.ignoreToken && to.path !== routerMeta.login.path) {
       if (to.path !== '/') {
-        Notification({
-          title: '提示',
-          message: '请先登录!',
+        CustomNotify({
           type: 'warning',
-          duration: 1500
+          duration: 1500,
+          message: '请先登录!'
         });
         next({ path: routerMeta.login.path, query: { redirect: location.hostname } });
       } else {
